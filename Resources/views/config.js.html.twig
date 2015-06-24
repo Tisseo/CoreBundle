@@ -1,0 +1,37 @@
+<script type="text/javascript">
+requirejs.config({
+    urlArgs: '{{ assets_version }}',
+    paths: {
+        'jquery/textfill':                  'bundles/tisseocore/js/jquery.textfill.min',
+        'jquery/datatables':                'bundles/tisseocore/js/jquery.dataTables.min',
+        jquery_ui_draggable:                'components/jquery-ui/ui/minified/jquery.ui.draggable.min',
+        jquery_ui_droppable:                'components/jquery-ui/ui/minified/jquery.ui.droppable.min',
+        'core/textfill':                    'bundles/tisseocore/js/textfill',
+        'core/form':                        'bundles/tisseocore/js/form',
+        'core/datatables':                  'bundles/tisseocore/js/datatables',
+    },
+    shim: {
+        'jquery/textfill': {
+            deps: ['jquery']
+        },
+        'jquery/datatables': {
+            deps: ['jquery']
+        },
+        'core/textfill': {
+            deps: ['jquery/textfill']
+        },
+        'core/datatables': {
+            deps: ['jquery/datatables', 'jquery/textfill']
+        },
+        jquery_ui_droppable: {
+            deps: ['jquery', 'jquery_ui_core', 'jquery_ui_mouse', 'jquery_ui_widget'],
+            exports: "jQuery"
+        },
+        jquery_ui_draggable: {
+            deps: ['jquery', 'jquery_ui_core', 'jquery_ui_mouse', 'jquery_ui_widget'],
+            exports: "jQuery"
+        }
+    },
+    deps: ['utils', 'jquery', 'core/form']
+});
+</script>

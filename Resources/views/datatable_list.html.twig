@@ -1,0 +1,39 @@
+{% extends no_left_menu == true ? "TisseoCoreBundle::container.html.twig" : "TisseoCoreBundle::container_and_menu.html.twig" %}
+
+{% import "CanalTPSamEcoreUserManagerBundle::macros.html.twig" as macros %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets 'bundles/tisseocore/css/jquery.dataTables.min.css'
+                   filter='cssrewrite' output='css/datatables.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block main_content -%}
+<div class="col-md-12" role="main">
+    <h1>{% block list_title -%}{% endblock %}</h1>
+    {% block line_comment -%}{% endblock %}
+    {% block list_menu -%}{% endblock %}
+    <table class="table datatable {% block table_classes -%}table-hover{% endblock %}">
+        <thead>
+            <tr>
+               {% block table_head -%}{% endblock %}
+            </tr>
+        </thead>
+        <tbody>
+        {% block table_body -%}
+        {% endblock %}
+        </tbody>
+    </table>
+    {% block list_pagination -%}
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        require(['core/datatables']);
+    </script>
+{% endblock %}

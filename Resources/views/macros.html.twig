@@ -1,0 +1,64 @@
+{% macro line_number(object, type, size) %}
+    {% if type == 'lineVersion' %}
+        {% if object.line.number %}
+            {% if size == 'small' %}
+        <div class="line-number line-small" style="color:{{ object.fgColor.html }}; background-color:{{ object.bgColor.html }}; font-family:sans-serif; font-weight: bold;">
+            {% elseif size == 'big' %}
+        <div class="line-number line-big" style="color:{{ object.fgColor.html }}; background-color:{{ object.bgColor.html }}; font-family:sans-serif; font-weight: bold;">
+            {% elseif size == 'free' %}
+        <div class="line-number line-free" style="color:{{ object.fgColor.html }}; background-color:{{ object.bgColor.html }}; font-family:sans-serif; font-weight: bold;">
+            {% endif %}
+            <span>{{ object.line.number }}</span>
+        </div>
+        {% endif %}
+    {% elseif type == 'line' %}
+        {% if object.LastLineVersion %}
+            {% set lineVersion = object.LastLineVersion %}
+            <div class="line-number line-{{ size }}" style="color:{{ lineVersion.fgColor.html }}; background-color:{{ lineVersion.bgColor.html }}; font-family:sans-serif; font-weight: bold;">
+        {% else %}
+        <div class="line-number line-{{ size }}" style="font-family:sans-serif; font-weight: bold;">
+        {% endif %}
+                <span>{{ object.number }}</span>
+            </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro line_version_startDate(lineVersion) %}
+    {% if not lineVersion.status %}
+        {{ lineVersion.processStatus }}
+    {% endif %}
+
+    {% if lineVersion.status == "new" %}
+        <span class="label label-info">{{ lineVersion.startDate|date('d/m/Y') }}</span>
+    {% elseif lineVersion.status == "wip" %}
+        <span class="label label-warning">{{ lineVersion.startDate|date('d/m/Y') }}</span>
+    {% elseif lineVersion.status == "published" %}
+        <span class="label label-success">{{ lineVersion.startDate|date('d/m/Y') }}</span>
+    {% endif %}
+{% endmacro %}
+
+{% macro line_version_status(lineVersion) %}
+    {% if not lineVersion.status %}
+        {{ lineVersion.processStatus }}
+    {% endif %}
+    {{ ("line_version.labels." ~ lineVersion.status)|trans({}, 'messages') }}
+{% endmacro %}
+
+{% macro pattern(pattern) %}
+    <span>
+        {% for day in pattern %}
+        <span class="{% if day %}green-fg-day{% else %}red-fg-day{% endif %}">{{ ('global.short_days.'~loop.index)|trans({}, 'messages') }}</span>
+        {% endfor %}
+    </span>
+{% endmacro %}
+
+{# Generate HTML to display loader (ajax request) #}
+{% macro loader(class) %}
+<div class="{{ class }}">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+{% endmacro %}

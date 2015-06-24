@@ -1,0 +1,34 @@
+{% extends "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets 'bundles/tisseocore/css/main.css'
+                   filter='cssrewrite' output='css/tisseo_core.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{% block head_config %}
+    {{ parent() }}
+    {% include 'TisseoCoreBundle::config.js.html.twig' %}
+{% endblock %}
+
+{% block title -%}
+{{ parent() }}
+{% endblock %}
+
+{% block navbar_brand %}
+{% endblock %}
+
+{% block root_breadcrumb %}
+{% endblock %}
+
+{% block body %}
+    {% block subheader %}
+    {% endblock %}
+    {% block container %}
+    {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+{% endblock %}

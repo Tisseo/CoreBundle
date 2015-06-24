@@ -1,0 +1,25 @@
+{
+    "name" : "tisseo/core-bundle",
+    "description" : "Core bundle providing common resources for Tisseo bundles",
+    "type" : "symfony-bundle",
+    "homepage": "https://github.com/Tisseo/CoreBundle",
+    "authors" : [
+        {
+            "name" : "Vincent Passama",
+            "email" : "vincent.passama@gmail.com"
+        }
+    ],
+    "keywords" : [
+        "tisseo core bundle symfony nmm"
+    ],
+    "license" : "APGL-3.0",
+    "require" : {
+        "php": ">=5.4.3",
+        "components/jquery": "1.11.0",
+        "components/jqueryui": "1.10.3"
+    },
+    "autoload" : {
+        "psr-0" : { "Tisseo\\CoreBundle\\" : "" }
+    },
+    "target-dir" : "Tisseo/CoreBundle"
+}
