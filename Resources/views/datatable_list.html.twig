@@ -15,7 +15,7 @@
     <h1>{% block list_title -%}{% endblock %}</h1>
     {% block line_comment -%}{% endblock %}
     {% block list_menu -%}{% endblock %}
-    <table class="table datatable {% block table_classes -%}table-hover{% endblock %}">
+    <table class="table {% if not empty %}datatable {% endif %}{% block table_classes -%}table-hover{% endblock %}">
         <thead>
             <tr>
                {% block table_head -%}{% endblock %}

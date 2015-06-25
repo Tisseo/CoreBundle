@@ -2,10 +2,18 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    {% stylesheets 'bundles/tisseocore/css/jquery.dataTables.min.css'
-                   filter='cssrewrite' output='css/datatables.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
-    {% endstylesheets %}
+    {% if datatable %}
+        {% stylesheets 'bundles/tisseocore/css/jquery.dataTables.min.css'
+                       filter='cssrewrite' output='css/datatables.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+        {% endstylesheets %}
+    {% endif %}
+    {% if smoothness %}
+        {% stylesheets 'components/jquery-ui/themes/smoothness/jquery-ui.css'
+                       filter='cssrewrite' output='css/smoothness.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+        {% endstylesheets %}
+    {% endif %}
 {% endblock %}
 
 {% block container %}

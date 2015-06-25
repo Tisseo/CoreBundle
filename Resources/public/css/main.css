@@ -7,7 +7,8 @@
     font-weight:bold;
 }
 /* datepicker fix chrome bug */
-.datepicker {
+.datepicker,
+.ui-autocomplete {
     z-index:9999 !important;
 }
 /* datatables plugin */
@@ -60,35 +61,23 @@
     float:right;
     display:inline-block;
 }
-#paon_line_version_edit_line,
-#paon_line_version_line {
-    width:20%;
-}
 .small-button {
     width:20px;
     height:20px;
     line-height:0px;
-    padding: 1px 5px;
+    padding:1px 5px;
 }
 .small-link {
     width:20px;
     height:20px;
     line-height:13px;
-    padding: 1px 5px;
+    padding:1px 5px;
 }
 .small-button span, .small-link span {
     font-size:8px;
 }
 .message {
     padding-left:20px;
-}
-/* line number rendering */
-li.child-line {
-    padding-top:10px;
-    display:block;
-}
-.child-line div {
-    display:inline-block;
 }
 .line-small {
     height:30px;
@@ -106,26 +95,17 @@ li.child-line {
     line-height:32px;
 }
 .line-number {
-    display: inline-block;
+    display:inline-block;
     border-radius:3px;
     text-align:center;
     padding:0 5px;
-}
-/* calendar form rendering */
-.calendar-container {
-    display:inline-block;
-}
-.calendar-color {
-    display:inline-block;
-    width:20px;
-    height:10px;
 }
 .calendar-day {
     display:inline-block;
     width:10px;
     height:10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
 }
 .green-day {
     background-color:green;
@@ -141,122 +121,10 @@ li.child-line {
     color:red;
     font-weight:bold;
 }
-table .grid-mask-type {
-    cursor:pointer;
-}
-.trip-calendar {
-    padding-left:5px;
-}
-.title {
-    min-height:55px;
-}
-/* exception list/form rendering */
-.exception-calendar {
-    display:none;
-}
-.exception-calendar tr {
-    cursor:pointer;
-}
-.exception-calendar tr.edit-comment,
-.exception-calendar tr.edit-comment:hover {
-    background-color:#A9D0F5;
-}
-.head-info {
-    display:inline-block;
-    margin-bottom:20px;
-}
-.head-info .head-menu,
-.head-info .head-number {
-    display:inline-block;
-}
-.head-number {
-    float:right;
-}
-.head-number div {
-    display:inline-block;
-}
-.head-number .line-big {
-    float:right;
-    margin-bottom:5px;
-}
-.head-menu {
-    float:left;
-    text-align:left;
-    width:40%;
-}
-.head-menu .choice {
-    display:inline;
-}
-.head-menu .choice select,
-.head-menu .choice button {
-    display:block;
-    float:left;
-}
-.head-menu .choice select {
-    width:60%;
-    margin-right:10px;
-}
-.head-menu .title-choice {
-    font-weight:bold;
-    font-size:1.2em;
-    margin-bottom:10px;
-}
-/* line version list */
-.physical-mode {
-    background-color:#343434;
-    padding:5px;
-    line-height:27px;
-    width:100%;
-    border-radius:5px;
-    display:inline-block;
-    color:white;
-    margin:10px 0;
-    cursor:pointer;
-    text-decoration:none;
-}
-.physical-mode:hover {
-    background-color:#007E8D;
-    color:white;
-    text-decoration:none;
-}
-.mode-icon {
-    float:left;
-    margin-right:10px;
-}
-.mode-bus {
-    background:0 0px;
-}
-.mode-métro {
-    background:0 -27px;
-}
-.mode-tramway {
-    background:0 -56px;
-}
-.mode-tad {
-    background:0 0px;
-}
-/* data exchange */
-.job-running {
-    color:gray;
-}
-
-/* Schematic */
-.schematic-updating, .schematic-updating.even, .schematic-updating.odd {
-    color: rgb(255, 0, 0);
-    background-color: rgba(255, 0, 0, 0.1);
-}
-
-.schematic-content-form {
-    display: none;
-}
-.schematic-min-width-field {
-    width: 60px;
-}
-
 .input-hidden {
-    left: 25px;
-    z-index: -10;
-    position: absolute;
-    float: none;
-    top: 25px;
+    left:25px;
+    z-index:-10;
+    position:absolute;
+    float:none;
+    top:25px;
 }
