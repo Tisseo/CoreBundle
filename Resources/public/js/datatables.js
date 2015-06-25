@@ -1,4 +1,4 @@
-define(['jquery', 'paon/textfill', 'datatables'], function($) {
+define(['jquery', 'core/textfill', 'datatables'], function($) {
     datatables = [];
     $(document).ready(function() {
         $(".datatable").each(function(index) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tisseo\Bundle\CoreBundle;
+namespace Tisseo\CoreBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

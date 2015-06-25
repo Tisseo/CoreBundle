@@ -1,4 +1,12 @@
-{% extends "TisseoCoreBundle::base.html.twig" %}
+{% extends bundle ~ "::base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {% stylesheets 'bundles/tisseocore/css/jquery.dataTables.min.css'
+                   filter='cssrewrite' output='css/datatables.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+    {% endstylesheets %}
+{% endblock %}
 
 {% block container %}
     <div class="row">
