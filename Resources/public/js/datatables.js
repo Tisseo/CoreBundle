@@ -1,5 +1,5 @@
 define(['jquery', 'core/textfill', 'datatables'], function($) {
-    datatable = function(paginate) {
+    datatable = function(paginate, margin) {
         datatables = [];
         $(document).ready(function() {
             $(".datatable").each(function(index) {
@@ -54,7 +54,8 @@ define(['jquery', 'core/textfill', 'datatables'], function($) {
                 });
                 datatables[index] = datatable;
             });
-            $('.datatable').parent().css('margin-bottom', '50px');
+            if (margin)
+                $('.datatable').parent().css('margin-bottom', margin+'px');
         });
     };
 });

@@ -33,12 +33,15 @@
 
 {% block javascripts %}
     {{ parent() }}
-    {% if paginate == none %}
-        {% set paginate = false %}
+    {% if not paginate %}
+        {% set paginate = 'false' %}
+    {% endif %}
+    {% if not margin %}
+        {% set margin = '0' %}
     {% endif %}
     <script>
         require(['core/datatables'], function() {
-            datatable({{ paginate }});
+            datatable({{ paginate }}, {{ margin }});
         });
     </script>
 {% endblock %}
