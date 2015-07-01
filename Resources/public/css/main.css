@@ -79,6 +79,7 @@
 .message {
     padding-left:20px;
 }
+/* general visual */
 .line-small {
     height:30px;
     width:30px;
@@ -127,4 +128,24 @@
     position:absolute;
     float:none;
     top:25px;
+}
+.header-ribbon {
+    background-color:#343434;
+    padding:5px;
+    line-height:27px;
+    width:100%;
+    border-radius:5px;
+    display:inline-block;
+    color:white;
+    margin:10px 0;
+    cursor:pointer;
+    text-decoration:none;
+}
+.header-ribbon:hover {
+    background-color:#007E8D;
+    color:white;
+    text-decoration:none;
+}
+.panel {
+    margin-bottom:20px;
 }
