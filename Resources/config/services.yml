@@ -1,0 +1,9 @@
+parameters:
+    tisseo_core.datepicker.class: Tisseo\CoreBundle\Form\Type\DatepickerType
+
+services:
+    form.type.tisseo_datepicker:
+        class: %tisseo_core.datepicker.class%
+        tags:
+            - { name: form.type, alias: tisseo_datepicker }
+
