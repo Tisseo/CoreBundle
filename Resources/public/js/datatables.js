@@ -6,6 +6,12 @@ define(['jquery', 'core/textfill', 'datatables'], function($) {
                 var datatable = $(this).DataTable({
                     "aaSorting": [],
                     "bPaginate": paginate,
+                    "createdRow": function(row, data) {
+                        $(row).find(".line-small").textfill({
+                            minFontPixels: 2,
+                            maxFontPixels: 15
+                        });
+                    },
                     "aoColumnDefs" : [
                         {
                             "bSortable" : false,
