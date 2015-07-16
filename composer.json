@@ -22,5 +22,5 @@
         "psr-0" : { "Tisseo\\CoreBundle\\" : "" }
     },
     "target-dir" : "Tisseo/CoreBundle",
-    "version": "1.0.1"
+    "version": "1.0.2"
 }
