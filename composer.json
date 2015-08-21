@@ -16,7 +16,8 @@
     "require" : {
         "php": ">=5.4.3",
         "components/jquery": "1.11.0",
-        "components/jqueryui": "1.10.3"
+        "components/jqueryui": "1.10.3",
+        "components/bootbox": "dev-master"
     },
     "autoload" : {
         "psr-0" : { "Tisseo\\CoreBundle\\" : "" }
