@@ -1,47 +1,33 @@
-{% extends no_left_menu == true ? "TisseoCoreBundle::container.html.twig" : "TisseoCoreBundle::container_and_menu.html.twig" %}
+{% extends "TisseoCoreBundle::container.html.twig" %}
+{% set datatable = true %}
 
-{% import "CanalTPSamEcoreUserManagerBundle::macros.html.twig" as macros %}
-
-{% block stylesheets %}
-    {{ parent() }}
-    {% stylesheets 'bundles/tisseocore/css/jquery.dataTables.min.css'
-                   filter='cssrewrite' output='css/datatables.css' %}
-        <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
-    {% endstylesheets %}
-{% endblock %}
-
-{% block main_content -%}
-<div class="col-md-12" role="main">
-    <h1>{% block list_title -%}{% endblock %}</h1>
-    {% block line_comment -%}{% endblock %}
-    {% block list_menu -%}{% endblock %}
+{% block content %}
     <table class="table {% if not empty %}datatable {% endif %}{% block table_classes -%}table-hover{% endblock %}">
         <thead>
             <tr>
-               {% block table_head -%}{% endblock %}
+               {% block table_head %}{% endblock %}
             </tr>
         </thead>
         <tbody>
-        {% block table_body -%}
-        {% endblock %}
+            {% block table_body %}{% endblock %}
         </tbody>
     </table>
-    {% block list_pagination -%}
-    {% endblock %}
-</div>
+    {% block list_pagination %}{% endblock %}
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
-    {% if not paginate %}
-        {% set paginate = 'false' %}
+    {% if not empty %}
+        {% if not paginate %}
+            {% set paginate = 'false' %}
+        {% endif %}
+        {% if not margin %}
+            {% set margin = '0' %}
+        {% endif %}
+        <script>
+            require(['core/datatables'], function() {
+                datatable({{ paginate }}, {{ margin }});
+            });
+        </script>
     {% endif %}
-    {% if not margin %}
-        {% set margin = '0' %}
-    {% endif %}
-    <script>
-        require(['core/datatables'], function() {
-            datatable({{ paginate }}, {{ margin }});
-        });
-    </script>
 {% endblock %}

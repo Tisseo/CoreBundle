@@ -1,11 +1,28 @@
 {% extends bundle ~ "::base.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    {% if datatable %}
+        {% stylesheets 'bundles/tisseocore/css/jquery.dataTables.min.css'
+                       filter='cssrewrite' output='css/datatables.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+        {% endstylesheets %}
+    {% endif %}
+    {% if smoothness %}
+        {% stylesheets 'components/jquery-ui/themes/smoothness/jquery-ui.css'
+                       filter='cssrewrite' output='css/smoothness.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+        {% endstylesheets %}
+    {% endif %}
+{% endblock %}
+
 {% set left_menu_html %}
 {% endset %}
 
 {% block container %}
-    <div class="row">
-        {% block main_content %}
-        {% endblock %}
-    </div>
+<div class="row">
+    {% block main_content %}
+        <h1>{% block list_title %}{{ pageTitle|trans }}{% endblock %}</h1>
+    {% endblock %}
+</div>
 {% endblock %}
