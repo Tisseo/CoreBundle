@@ -41,24 +41,13 @@
     {% if not lineVersion.status %}
         {{ lineVersion.processStatus }}
     {% endif %}
-    {{ ("line_version.labels." ~ lineVersion.status)|trans({}, 'messages') }}
+    {{ ("line_version.label." ~ lineVersion.status)|trans }}
 {% endmacro %}
 
 {% macro pattern(pattern) %}
     <span>
         {% for day in pattern %}
-        <span class="{% if day %}green-fg-day{% else %}red-fg-day{% endif %}">{{ ('global.short_days.'~loop.index)|trans({}, 'messages') }}</span>
+        <span class="{% if day %}green-fg-day{% else %}red-fg-day{% endif %}">{{ ('global.short_days.'~loop.index)|trans }}</span>
         {% endfor %}
     </span>
-{% endmacro %}
-
-{# Generate HTML to display loader (ajax request) #}
-{% macro loader(class) %}
-<div class="{{ class }}">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-</div>
 {% endmacro %}

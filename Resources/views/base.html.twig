@@ -13,22 +13,12 @@
     {% include 'TisseoCoreBundle::config.js.html.twig' %}
 {% endblock %}
 
-{% block title -%}
-{{ parent() }}
-{% endblock %}
-
-{% block navbar_brand %}
-{% endblock %}
-
-{% block root_breadcrumb %}
-{% endblock %}
+{% block navbar_brand %}{% endblock %}
+{% block root_breadcrumb %}{% endblock %}
 
 {% block body %}
     {% block subheader %}
     {% endblock %}
     {% block container %}
     {% endblock %}
-{% endblock %}
-
-{% block javascripts %}
 {% endblock %}

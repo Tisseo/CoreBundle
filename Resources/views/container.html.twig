@@ -18,9 +18,12 @@
 
 {% block container %}
     <div class="row">
-        <div class="col-md-12" role="main">
-            {% block main_content %}
-            {% endblock %}
-        </div>
+        {% block main_content %}
+            <div class="col-md-12" role="main">
+                <h1>{% block list_title %}{{ pageTitle|trans }}{% endblock %}</h1>
+                {% block header_content %}{% endblock %}
+                {% block content %}{% endblock %}
+            </div>
+        {% endblock %}
     </div>
 {% endblock %}
