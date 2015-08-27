@@ -41,13 +41,13 @@
     {% if not lineVersion.status %}
         {{ lineVersion.processStatus }}
     {% endif %}
-    {{ ("line_version.label." ~ lineVersion.status)|trans }}
+    {{ ("tisseo.paon.line_version.label." ~ lineVersion.status)|trans }}
 {% endmacro %}
 
 {% macro pattern(pattern) %}
     <span>
         {% for day in pattern %}
-        <span class="{% if day %}green-fg-day{% else %}red-fg-day{% endif %}">{{ ('global.short_days.'~loop.index)|trans }}</span>
+        <span class="{% if day %}green-fg-day{% else %}red-fg-day{% endif %}">{{ ('tisseo.global.short_days.'~loop.index)|trans }}</span>
         {% endfor %}
     </span>
 {% endmacro %}

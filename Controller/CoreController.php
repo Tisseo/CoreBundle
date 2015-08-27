@@ -21,11 +21,19 @@ abstract class CoreController extends Controller
     }
 
     // TODO: This is ugly, change it. @see DatasourceManager in EndivBundle
-    protected function buildDefaultDatasource($datasource)
+    protected function addBoaDatasource($datasource)
     {
         $user = $this->get('security.context')->getToken()->getUser();
         $datasource->setCode($user->getUsername());
-        $datasource->setDatasource($this->get('tisseo_endiv.datasource_manager')->findDefaultDatasource());
+        $datasource->setDatasource($this->get('tisseo_endiv.datasource_manager')->findDatasource('Service Données'));
+    }
+
+    // TODO: Ugly too
+    protected function addPaonDatasource($datasource)
+    {
+        $user = $this->get('security.context')->getToken()->getUser();
+        $datasource->setCode($user->getUsername());
+        $datasource->setDatasource($this->get('tisseo_endiv.datasource_manager')->findDatasource('Information Voyageurs'));
     }
 
     protected function addFlashException($error)
