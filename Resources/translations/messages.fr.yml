@@ -10,6 +10,7 @@ tisseo:
         closure: Clôturer
         delete: Supprimer
         delete_all: Tout supprimer
+        clean: Purger
         duplicate: Dupliquer
         cancel: Annuler
         status: Statut
@@ -18,6 +19,7 @@ tisseo:
         remove: Retirer
         add: Ajouter
         empty: Vider
+        send: Envoyer
         publish: Publier
         unpublish: Dépublier
         upload: Dépôser
@@ -25,10 +27,30 @@ tisseo:
         minutes: Minutes
         annotations: Annotations
         no_items: Aucun élément à afficher
+        no_items_short: Aucun
+        short_days:
+            1: L
+            2: M
+            3: M
+            4: J
+            5: V
+            6: S
+            7: D
+        long_days:
+            1: Lundi
+            2: Mardi
+            3: Mercredi
+            4: Jeudi
+            5: Vendredi
+            6: Samedi
+            7: Dimanche
 
     validation:
         greater_than_field: "Ce champ doit être supérieur au champ %field%."
         hexa_color: Ce champ doit être un code couleur en hexadécimal (ex: \#ffffff)
+        blank_value: Veuillez renseigner ce champs.
+        unique_in_collection: Vous ne pouvez pas associer plusieurs fois le même objet.
+        invalid_email: Adresse email invalide.
 
     flash:
         error:
@@ -39,6 +61,225 @@ tisseo:
             deleted: Suppression effectuée
             closed: Clôturation effectuée
             detached: Suppression effectuée
+            sent: Demande envoyée
+
+    paon:
+        welcome: "Bienvenue sur PAON"
+        application: "Paon"
+        menu:
+            line: Gestion des lignes
+            line_version:
+                manage: Gestion des offres
+                history: Historique des offres
+                active: Offres actuelles
+            data_exchange: Imports/Exports
+            schematic:
+                manage: Gestion des schémas
+                list: Liste des schémas
+                gis_group: Gestion des voussures
+
+        line:
+            title:
+                list: Lignes
+                edit: Edition de ligne
+                create: Création de ligne
+            label:
+                number: Numéro de ligne
+                physical_mode: Mode de transport
+                offers: Offres
+                priority: Priorité
+            action:
+                create: Créer une ligne
+
+        line_version:
+            title:
+                list: Offres actives / futures
+                history: Historique des offres
+                edit: Edition d'offre
+                create: Création d'offre
+                show: Consultation d'offre
+                show_history: Historique d'offre
+                close: Clôture d'offre
+            header:
+                summary: Résumé
+                properties: Propriétés
+                printings: Tirages
+                modifications: Modifications
+            label:
+                name: Offre
+                printings: Tirages
+                version: Version
+                status: Statut
+                start_date: Date de début
+                end_date: Date de fin
+                planned_end_date: Date de fin prévue
+                child_line: Ligne de soirée rattachée
+                number: Numéro
+                forward: Direction aller
+                backward: Direction retour
+                fg_color: Couleur du texte
+                bg_color: Couleur du fond
+                properties: Propriétés de ligne
+                depot: Dépôt
+                comment: Commentaire
+                published: publiée
+                new: nouvelle
+                wip: work in progress
+                history: Historique
+                modifications: Modifications
+                choose_schematic: Choisir un schéma
+                schematic: Schématique
+                resolved_modifications: Résolution des modifications
+            action:
+                create: Créer une offre
+                publication: Publication
+                offer: Offre
+                show: Consulter
+                clean: Purger
+                delete: Supprimer
+                close: Clôturer
+                calendar: Calendriers
+                exception: Exceptions
+            message:
+                no_child_line: Pas de ligne soirée
+                closure_error: La date de début d'offre doit être supérieure à la date de fin de l'offre précédente.
+                not_found: Offre introuvable
+                clean: Nettoyage des données "fiche horaire" effectué pour cette offre.
+                not_clean: Nettoyage des données "fiche horaire" impossible pour cette offre.
+                locked_alert: Attention, cette offre est active ou débute dans moins de 20 jours.
+                no_offers: Aucune offre cloturée pour cette ligne.
+            confirm:
+                clean: Voulez-vous vraiment purger les données de cette offre ?
+                delete: Cette action entraine la suppression des données associées à cette offre (itinéraires, tronçons, horaires, ...) et réactivera l'offre précédente. Etes-vous sûr de vouloir supprimer cette offre ?
+
+        modification:
+            label:
+                description: Description
+                date: Date
+                author: Auteur
+                resolved_in: Résolue dans version
+                not_resolved: Non résolue
+
+        printing:
+            title:
+                create: Commande d'impression
+            label:
+                quantity: Quantité
+                comment: Commentaire
+                date: Date
+            action:
+                create: Nouvelle impression
+
+        data_exchange:
+            title:
+                show: Liste des tâches
+            label:
+                job: Tâche
+            message:
+                job_running: Traitement %name% lancé par %user%. Lancement de nouveau traitement en attente.
+                launched_by: lancé par %user%
+            action:
+                launch: Lancement
+
+        calendar:
+            title:
+                edit: Edition des calendriers d'offre
+            header:
+                grid_calendar: Grilles présentes sur la fiche horaire
+                grid_mask_type: Calendriers disponibles dans les données
+            label:
+                services: services
+            message:
+                no_data: Aucune donnée présente en base qui ne soit pas encore associée au calendrier de l'offre.
+
+        grid_mask_type:
+            header:
+                label: Calendrier de services
+
+        grid_calendar:
+            header:
+                label: Calendriers de l'offre
+
+        exception:
+            title:
+                edit: Edition des exceptions d'offres
+            header:
+                calendar: Choix de la grille horaire
+            action:
+                edit: Editer le(s) exception(s)
+            message:
+                no_data: Il n'y a aucun calendrier attaché à cette offre. Veuillez créer des grilles horaires dans le menu 'Calendrier' afin de pouvoir effectuer l'édition des exceptions.
+                save: Attention, les données actuellement éditées ne seront pas sauvegardées si vous ne cliquez pas sur "Enregistrer".
+                invalid: Les modifications effectuées ne peuvent être validées car il reste des labels automatiques 'zz' dans les grilles horaires.
+
+        comment:
+            title:
+                edit: Edition d'une exception
+            label:
+                label: Renvoi
+                text: Texte
+
+        trip:
+            label:
+                name: Service
+                days: Jours de circulation
+                start_stop: Arrêt de départ
+                start_time: Heure de départ
+                end_stop: Arrêt d'arrivée
+                end_time: Heure d'arrivée
+
+        line_schema:
+            title:
+                list: Schémas
+                list_form: Schémas de la ligne
+            label:
+                name: Nom
+                date: Date
+                comment: Commentaire
+                file: Schéma
+                number: Numéro
+                group: Voussure
+                deprecated: Obsolète ?
+            action:
+                list: Schémas
+                upload_file: Déposer un fichier
+                ask_schematic: Demander un nouveau schéma
+                deprecated: Déclarer un schéma obsolète
+                add_info: Ajouter une information
+            message:
+                warning_group: Attention, cette ligne appartient à la voussure %name%.
+            mail:
+                object: Objet : Demande de nouveau schéma - LIGNE %line%
+                author: Auteur : %user%
+                date: Date : %date%
+
+        line_group_gis:
+            title:
+                list: Voussures
+                create: Création de voussure
+                edit: Édition de voussure
+            label:
+                name: Voussure
+                lines: Lignes
+                line: Ligne
+                line_number: Numéro
+                last_schematic: Dernier schéma
+                last_usable_schematic: Premier schéma utilisable
+                group_name: Nom de la voussure
+                nb_bus: Nombre de bus
+                comment: Commentaire
+                associated_lines: Lignes associées
+            action:
+                create: Créer une voussure
+
+        datasource:
+            label:
+                name: Source de données
+                code: Code
+
+        mailer:
+            message:
+                sent: La demande a bien été envoyée.
 
     boa:
         welcome: "Bienvenue sur Boa"
@@ -428,6 +669,7 @@ tisseo:
                 positive: Signe
                 interval: Récurrence
                 included_calendar: Calendrier
+
         accessibility_type:
             label:
                 start_time: De
