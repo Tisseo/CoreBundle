@@ -612,6 +612,7 @@ tisseo:
                 rank: Rang
                 city: Ville
                 stop: Arrêt
+                code: Code
                 drop_off: Descente
                 pick_up: Montée
                 scheduled: Régulation
