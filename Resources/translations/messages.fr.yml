@@ -645,6 +645,9 @@ tisseo:
                 list: Calendriers
                 edit: Edition de calendrier
                 create: Création de calendrier
+            header:
+                edit: Calendrier
+                calendar_elements: Éléments du calendrier
             label:
                 name: Nom
                 type: Type
@@ -654,6 +657,7 @@ tisseo:
                 computed_start_date: Début
                 computed_end_date: Fin
                 calendar_elements: Elements
+                line_version: Offre liée
             action:
                 create: Créer un calendrier
             confirm:
@@ -667,9 +671,9 @@ tisseo:
                 rank: Ordre
                 start_date: Début
                 end_date: Fin
-                positive: Signe
+                operator: Signe
                 interval: Récurrence
-                included_calendar: Calendrier
+                included_calendar: Calendrier inclus
 
         accessibility_type:
             label:
