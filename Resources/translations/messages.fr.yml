@@ -589,6 +589,7 @@ tisseo:
                 period_calendar: Le calendrier "période" est obligatoire (ou sa valeur est incorrecte)
                 pattern_name_empty: Renseignez le/les nom(s) de patron de service.
                 pattern_time_invalid: Au moins une horaire est invalide.
+                calendar_intersection: Le calendrier choisi n'a aucune intersection avec le calendrier jour.
             confirm:
                 delete_all: Vous allez supprimer tous les services de cette route qui ne sont pas des patrons de service. Êtes-vous sûr de vouloir accomplir cette action ?
             message:
