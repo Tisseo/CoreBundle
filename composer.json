@@ -22,6 +22,5 @@
     "autoload" : {
         "psr-0" : { "Tisseo\\CoreBundle\\" : "" }
     },
-    "target-dir" : "Tisseo/CoreBundle",
-    "minimum-stability": "dev"
+    "target-dir" : "Tisseo/CoreBundle"
 }
