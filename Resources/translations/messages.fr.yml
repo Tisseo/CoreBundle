@@ -128,7 +128,8 @@ tisseo:
                 history: Historique
                 modifications: Modifications
                 choose_schematic: Choisir un schéma
-                schematic: Schématique
+                schematic: Date du schéma : %date%
+                no_schematic: Aucun schéma
                 resolved_modifications: Résolution des modifications
             action:
                 create: Créer une offre
@@ -228,7 +229,7 @@ tisseo:
                 end_stop: Arrêt d'arrivée
                 end_time: Heure d'arrivée
 
-        line_schema:
+        schematic:
             title:
                 list: Schémas
                 list_form: Schémas de la ligne
@@ -238,14 +239,16 @@ tisseo:
                 comment: Commentaire
                 file: Schéma
                 number: Numéro
-                group: Voussure
+                group_gis: Voussure
                 deprecated: Obsolète ?
             action:
                 list: Schémas
                 upload_file: Déposer un fichier
                 ask_schematic: Demander un nouveau schéma
                 deprecated: Déclarer un schéma obsolète
+                group_gis: Déclarer un schéma de voussure
                 add_info: Ajouter une information
+                delete: Supprimer un schéma
             message:
                 warning_group: Attention, cette ligne appartient à la voussure %name%.
             mail:
@@ -269,6 +272,7 @@ tisseo:
                 nb_bus: Nombre de bus
                 comment: Commentaire
                 associated_lines: Lignes associées
+                schematic: Schématique
             action:
                 create: Créer une voussure
 
