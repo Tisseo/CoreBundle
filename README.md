@@ -1,23 +1,24 @@
-README
-======
+Core
+====
 
 Description
 -----------
 
-CoreBundle is the core bundle providing common views and resources.
-It is used by BoaBundle and PaonBundle.
+CoreBundle is providing common resources to
+[Tisseo](https://github.com/Tisseo) Symfony2 bundles.
 
 Requirements
 ------------
 
-- PHP 5.4.3
+- PHP 5.3+
+- Symfony 2.6.x
 
 Installation
 ------------
 
 1. composer.json:
 
-'''
+```
     "repositories": [
         {
             "type": "git",
@@ -29,22 +30,16 @@ Installation
         "tisseo/core-bundle": "dev-master",
         // ...
     }
-'''
+```
 
 2. AppKernel.php
 
-'''
+```
     $bundles = array(
         new Tisseo\CoreBundle\TisseoCoreBundle(),
         // ...
     );
-'''
-
-Configuration
--------------
-
-You don't need to do this if you're working with the main bundle NMM which
-provides all this configuration already.
+```
 
 Contributing
 ------------
