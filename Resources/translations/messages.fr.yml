@@ -59,7 +59,7 @@ tisseo:
             created: Création effectuée
             edited: Modifications sauvegardées
             deleted: Suppression effectuée
-            closed: Clôturation effectuée
+            closed: Clôture effectuée
             detached: Suppression effectuée
             sent: Demande envoyée
 
@@ -301,7 +301,10 @@ tisseo:
             poi_type: Types de poi
             color: Couleurs
             log: Logs
-            route: Transport
+            transport: 
+                manage: Transport
+                route: Routes
+                non_concurrency: Non concurrence
             calendar:
                 manage: Calendriers
                 day: Jour
@@ -450,6 +453,25 @@ tisseo:
         line:
             label:
                 number: Numéro
+
+        non_concurrency:
+            title:
+                list: Non Concurrence
+                edit: Edition de non concurrence
+                create: Création de non concurrence
+            label:
+                number: Numéro de ligne
+                mode: Mode de transport
+                rule: Règle
+                has_priority: est prioritaire à         
+                has_not_priority: est secondaire à 
+                from: de     
+                time: %time% min
+                priority_line: Ligne prioritaire
+                non_priority_line: Ligne secondaire
+                duration: Durée (en minutes) 
+            action:
+                create: Créer une règle
 
         route:
             title:
