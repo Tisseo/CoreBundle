@@ -170,6 +170,7 @@ tisseo:
                 date: Date
             action:
                 create: Nouvelle impression
+                export: Export des tirages
 
         data_exchange:
             title:
