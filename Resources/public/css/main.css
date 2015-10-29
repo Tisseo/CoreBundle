@@ -70,8 +70,8 @@
 .small-link {
     width:20px;
     height:20px;
-    line-height:13px;
-    padding:1px 5px;
+    line-height:15px;
+    padding:1px 6px;
 }
 .small-button span, .small-link span {
     font-size:8px;

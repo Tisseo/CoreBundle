@@ -106,7 +106,7 @@ tisseo:
                 printings: Tirages
                 modifications: Modifications
             label:
-                name: Offre
+                name: Nom commercial
                 printings: Tirages
                 version: Version
                 status: Statut
