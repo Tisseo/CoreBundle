@@ -278,6 +278,7 @@ tisseo:
                 schematic: Schématique
             action:
                 create: Créer une voussure
+                export: Export des voussures
 
         datasource:
             label:
