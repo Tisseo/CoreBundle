@@ -303,7 +303,7 @@ tisseo:
             poi_type: Types de poi
             color: Couleurs
             log: Logs
-            transport: 
+            transport:
                 manage: Transport
                 route: Routes
                 non_concurrency: Non concurrence
@@ -465,13 +465,13 @@ tisseo:
                 number: Numéro de ligne
                 mode: Mode de transport
                 rule: Règle
-                has_priority: est prioritaire à         
-                has_not_priority: est secondaire à 
-                from: de     
+                has_priority: est prioritaire à
+                has_not_priority: est secondaire à
+                from: de
                 time: %time% min
                 priority_line: Ligne prioritaire
                 non_priority_line: Ligne secondaire
-                duration: Durée (en minutes) 
+                duration: Durée (en minutes)
             action:
                 create: Créer une règle
 
