@@ -6,4 +6,3 @@ services:
         class: %tisseo_core.datepicker.class%
         tags:
             - { name: form.type, alias: tisseo_datepicker }
-

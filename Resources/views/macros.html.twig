@@ -23,25 +23,14 @@
     {% endif %}
 {% endmacro %}
 
-{% macro line_version_startDate(lineVersion) %}
-    {% if not lineVersion.status %}
-        {{ lineVersion.processStatus }}
-    {% endif %}
+{% macro line_version_startDate(lineVersion, date) %}
+    {{ lineVersion.ProcessStatus(date) }}
 
     {% if lineVersion.status == "new" %}
         <span class="label label-info">{{ lineVersion.startDate|date('d/m/Y') }}</span>
-    {% elseif lineVersion.status == "wip" %}
-        <span class="label label-warning">{{ lineVersion.startDate|date('d/m/Y') }}</span>
     {% elseif lineVersion.status == "published" %}
         <span class="label label-success">{{ lineVersion.startDate|date('d/m/Y') }}</span>
     {% endif %}
-{% endmacro %}
-
-{% macro line_version_status(lineVersion) %}
-    {% if not lineVersion.status %}
-        {{ lineVersion.processStatus }}
-    {% endif %}
-    {{ ("tisseo.paon.line_version.label." ~ lineVersion.status)|trans }}
 {% endmacro %}
 
 {% macro pattern(pattern) %}
