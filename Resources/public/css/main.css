@@ -94,6 +94,7 @@
 .line-free {
     height:30px;
     line-height:32px;
+    margin:3px 0;
 }
 .line-number {
     display:inline-block;
@@ -152,4 +153,17 @@
 .offset {
     color:#333333;
     font-size:0.9em;
+}
+.description-popup {
+    display:none;
+    position:absolute;
+    bottom:20px;
+    left:-10px;
+    background-color:white;
+    text-align:center;
+    padding:5px;
+    border-style:solid;
+    border-radius:5px;
+    border-color:gray;
+    border-width:1px;
 }

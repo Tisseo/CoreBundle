@@ -318,7 +318,7 @@ tisseo:
                 manage: Arrêts
                 point: Point d'arrêt
                 area: Zone d'arrêt
-
+                odt_area: Zone TAD
         physical_mode:
             title:
                 list: Modes de transport
@@ -567,6 +567,41 @@ tisseo:
                     max_input: Volume de données trop important, pour pouvoir saisir des transfert, veuillez renseigner un filtre
                     end_stop: Ligne %i%: Vous n'avez pas sélectionné de destination
 
+        odt_area:
+            title:
+                list: Zones TAD
+                create: Création de zone TAD
+                edit: Edition de zone TAD
+            action:
+                create: Créer une zone TAD
+                edit: Consulter/Modifier
+                delete: Supprimer
+                toggle_closed_stops: Afficher les points d'arrêts cloturés
+            label:
+                name: Nom
+                comments: Commentaires
+                stops: Arrêts
+                lines: Lignes
+            error:
+                deletion_error_has_route_stops: Suppression impossible au motif que la zone %zone_name% est encore utilisée dans un ou plusieurs itinéraires
+            header:
+                edit_form: Edition de la zone TAD
+                stops_list: Liste des points d'arrêt de la zone
+        odt_stop:
+            title:
+                create: Création de point d'arrêt de zone TAD
+            label:
+                name: Nom
+                code: Code
+                city: Ville
+                start_date: Date de début
+                end_date: Date de fin
+                pickup: Montée
+                drop_off: Descente
+                stop: Point d'arrêt
+            description:
+                start_date: A partir du
+                end_date: et jusqu'au
         stop_history:
             title:
                 create: Edition des propriétés d'un point d'arrêt
