@@ -683,6 +683,7 @@ tisseo:
                 pick_up: Montée
                 scheduled: Régulation
                 internal_service: Desserte interne
+                zone: Zone
             validation:
                 first_stop_dropoff: La descente doit être interdite pour le premier arrêt.
                 first_stop_regulated: Le premier arrêt doit être régulé.
@@ -701,7 +702,10 @@ tisseo:
                 pick_up: Montée
                 scheduled: Régulation
                 schedule: Horaire
-
+                internal_service: Desserte interne
+                section_time: Temps tronçon
+                cumulative_time: Temps cumulé
+                tad_time: Temps intra-zone TAD
         trip_pattern:
             title:
                 list: Patrons de service
