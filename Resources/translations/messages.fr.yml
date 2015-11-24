@@ -22,7 +22,7 @@ tisseo:
         send: Envoyer
         publish: Publier
         unpublish: Dépublier
-        upload: Dépôser
+        upload: Déposer
         hours: Heures
         minutes: Minutes
         annotations: Annotations
