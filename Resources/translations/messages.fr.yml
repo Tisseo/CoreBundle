@@ -543,29 +543,42 @@ tisseo:
                 short_name: Nom court
                 long_name: Nom long
                 city: Ville
+                transfer_duration: Temps de transfert intra-zone par défaut (en minutes)
+                all_stops: Tous les points d'arrêt
             action:
                 internal_transfert: Transferts intra-zone
                 external_transfert: Transferts extra-zone
                 alias: Alias
                 geometries: Géométries
                 toggle_closed_stops: Afficher les points d'arrêts clôturés
-                transfer: Transferts de la zone d'arrêt
                 create: Créer une zone d'arrêt
             message:
                 no_stop_area_selected: Vous n'avez pas sélectionné de zone d'arrêt valide.
-            transfer:
-                save_confirmation: Voulez-vous enregistrer les modifications apportées ?
-                data_saved: Données enregistrées
-                saving_error: Erreur: %s%
-                error:
-                    duplicate_transfer: %i% transfert(s) ignoré(s) lors de l'enregistrement (doublon)
-                    transfer_duration: le temps de transfert par défaut doit être un entier ( %d% )
-                    distance: Ligne %i%: la distance doit être un entier ( %d%)
-                    duration: Ligne %i%: la durée doit être un entier ( %d%)
-                    duration_value: Ligne %i%: la durée est forcément un nombre entier inférieur ou égal à 60 ou égal à 99
-                    empty_duration: Ligne %i%: si la distance, description ou géométrie est renseignée, la durée doit forcément l'être
-                    max_input: Volume de données trop important, pour pouvoir saisir des transfert, veuillez renseigner un filtre
-                    end_stop: Ligne %i%: Vous n'avez pas sélectionné de destination
+
+        transfer:
+            title:
+                list: Transferts de la zone d'arrêt
+            label:
+                start_stop: Point d'arrêt de départ
+                end_stop: Point d'arrêt de destination
+                duration: Durée en minutes (99 pour interdit)
+                distance: Distance en mètres
+                long_name: Description
+            header:
+                intra: Transferts intra-zone
+                extra: Transfert extra-zone
+            error:
+                stop_area_transfer_duration_invalid: Le temps de transfert intra-zone par défaut doit être un nombre entier positif inférieur ou égal à 60
+                transfer_duration_invalid: La durée d'un transfert intra-zone doit être un nombre entier positif inférieur ou égal à 60, ou égal à 99
+                transfer_distance_invalid: La distance d'un transfert intra-zone doit être un nombre entier positif
+                transfer_duration_not_filled: Le champ "durée" est obligatoire pour la création d'un transfert
+                external_transfer_start_stop_not_filled: Le champ "point d'arrêt de départ" est obligatoire pour la création d'un transfert
+                external_transfer_end_stop_not_filled: Le champ "point d'arrêt de destination" est obligatoire pour la création d'un transfert
+        alias:
+            title:
+                list: Alias de la zone d'arrêt
+            label:
+                name: Nom
 
         odt_area:
             title:
