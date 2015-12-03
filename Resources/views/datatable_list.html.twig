@@ -24,9 +24,23 @@
         {% if not margin %}
             {% set margin = '0' %}
         {% endif %}
+        {% if not processing %}
+            {% set processing = 'false' %}
+        {% endif %}
+        {% if not serverSide %}
+            {% set serverSide = 'false' %}
+        {% endif %}
         <script>
             require(['core/datatables'], function() {
-                datatable({{ paginate }}, {{ margin }});
+                datatable({{ paginate }},
+                    {{ margin }},
+                    {{ iDisplayLength }},
+                    {{ processing }},
+                    {{ serverSide }}
+                    {% if ajax is defined %}
+                        ,'{{ ajax }}'
+                    {% endif %}
+                );
             });
         </script>
     {% endif %}

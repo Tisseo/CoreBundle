@@ -1,11 +1,16 @@
 define(['jquery', 'core/textfill', 'datatables'], function($) {
-    datatable = function(paginate, margin) {
+    datatable = function(paginate, margin, iDisplayLength, processing, serverSide, ajax) {
         datatables = [];
         $(document).ready(function() {
             $(".datatable").each(function(index) {
                 var datatable = $(this).DataTable({
                     "aaSorting": [],
                     "bPaginate": paginate,
+                    "iDisplayLength" : iDisplayLength,
+                    "processing": processing,
+                    "serverSide": serverSide,
+                    "ajax": ajax,
+                    "searchDelay": 750,
                     "createdRow": function(row, data) {
                         $(row).find(".line-small").textfill({
                             minFontPixels: 2,
@@ -53,7 +58,7 @@ define(['jquery', 'core/textfill', 'datatables'], function($) {
                         } else {
                             $(this).parent().find('.dataTables_paginate').css("display", "none");
                             $(this).parent().find('.dataTables_length').css("display", "none");
-                            $(this).parent().find('.dataTables_filter').css("display", "none");
+                            //$(this).parent().find('.dataTables_filter').css("display", "none");
                             $(this).parent().find('.dataTables_info').css("display", "none");
                         }
                     }
@@ -62,6 +67,20 @@ define(['jquery', 'core/textfill', 'datatables'], function($) {
             });
             if (margin)
                 $('.datatable').parent().css('margin-bottom', margin+'px');
+
+            var searchDelay = null;
+            $('div.dataTables_filter input').off('keyup.DT input.DT');
+            $('div.dataTables_filter input').on('keyup', function() {
+                var search = $('div.dataTables_filter input').val();
+                clearTimeout(searchDelay);
+                searchDelay = setTimeout(function() {
+                    if (search != null) {
+                        $.each(datatables, function(index, dt_table) {
+                            dt_table.search(search).draw();
+                        });
+                    }
+                }, 750);
+            });
         });
     };
 });
