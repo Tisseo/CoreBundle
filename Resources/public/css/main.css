@@ -168,3 +168,16 @@
     border-color:gray;
     border-width:1px;
 }
+#leaflet-map-container {
+    width:720px;
+    height:460px;
+    margin:0 auto;
+    border-style:solid;
+    border-width:1px;
+    border-color:#939393;
+}
+.leaflet-stop-popup {
+    font-size:medium;
+    text-align:center;
+    font-weight:bold;
+}

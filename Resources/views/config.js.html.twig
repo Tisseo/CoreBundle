@@ -11,7 +11,9 @@ requirejs.config({
         'core/textfill':                    'bundles/tisseocore/js/textfill',
         'core/form':                        'bundles/tisseocore/js/form',
         'core/datatables':                  'bundles/tisseocore/js/datatables',
-        'core/collection':                  'bundles/tisseocore/js/collection'
+        'core/collection':                  'bundles/tisseocore/js/collection',
+        'leaflet':                          'components/leaflet/js/leaflet.min',
+        'core/leaflet_utils':               'bundles/tisseocore/js/leaflet/leaflet_utils'
     },
     shim: {
         'bootbox': {
@@ -28,6 +30,9 @@ requirejs.config({
         },
         'core/datatables': {
             deps: ['jquery/datatables', 'jquery/textfill']
+        },
+        'core/leaflet_utils': {
+            deps: ['jquery', 'leaflet']
         },
         jquery_ui_droppable: {
             deps: ['jquery', 'jquery_ui_core', 'jquery_ui_mouse', 'jquery_ui_widget'],
