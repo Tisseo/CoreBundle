@@ -18,12 +18,6 @@
         "components/bootbox": "dev-master"
     },
     "autoload" : {
-        "psr-0" : { "Tisseo\\CoreBundle\\" : "" }
-    },
-    "target-dir" : "Tisseo/CoreBundle",
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.1.x-dev"
-        }
+        "psr-4" : { "Tisseo\\CoreBundle\\" : "" }
     }
 }
