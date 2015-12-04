@@ -30,6 +30,9 @@
         {% if not serverSide %}
             {% set serverSide = 'false' %}
         {% endif %}
+        {% if not iDisplayLength %}
+            {% set iDisplayLength = 100 %}
+        {% endif %}
         <script>
             require(['core/datatables'], function() {
                 datatable({{ paginate }},
