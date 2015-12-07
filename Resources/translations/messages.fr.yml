@@ -10,6 +10,7 @@ tisseo:
         closure: Clôturer
         delete: Supprimer
         delete_all: Tout supprimer
+        delete_select: Supprimer la sélection
         clean: Purger
         duplicate: Dupliquer
         cancel: Annuler
@@ -647,6 +648,7 @@ tisseo:
                 stop_time: Horaires de passage
                 calendar: Calendrier de service
             label:
+                select_all: Sél. tout
                 name: Nom du service
                 pattern: Patron de service
                 day_calendar: Calendrier jour
@@ -670,8 +672,10 @@ tisseo:
                 calendar_intersection: Le calendrier choisi n'a aucune intersection avec le calendrier jour.
             confirm:
                 delete_all: Vous allez supprimer tous les services de cette route qui ne sont pas des patrons de service. Êtes-vous sûr de vouloir accomplir cette action ?
+                delete_select: Vous allez supprimer tous les services selectionnés de cette route qui ne sont pas des patrons de service. Êtes-vous sûr de vouloir accomplir cette action ?
             message:
                 all_deleted: Les services ont tous été supprimés
+                select_deleted: Les services sélectionnés ont tous été supprimés
 
         trip_calendar:
             label:
