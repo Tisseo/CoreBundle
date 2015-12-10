@@ -14,6 +14,12 @@
             <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
         {% endstylesheets %}
     {% endif %}
+    {% if leaflet %}
+        {% stylesheets 'components/leaflet/css/leaflet.css'
+                       filter='cssrewrite' output='css/leaflet.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+        {% endstylesheets %}
+    {% endif %}
 {% endblock %}
 
 {% block container %}
@@ -26,4 +32,13 @@
             </div>
         {% endblock %}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {% if leaflet %}
+        <script>
+            var stop_icon_pin_url = "{{ asset('bundles/tisseocore/images/stop-icon.png') }}";
+            var stop_icon_circle_url = "{{ asset('bundles/tisseocore/images/stop-icon-circle.png') }}";
+        </script>
+    {% endif %}
 {% endblock %}
