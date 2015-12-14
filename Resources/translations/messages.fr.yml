@@ -519,11 +519,15 @@ tisseo:
             header:
                 stop_history: Propriétés du point d'arrêt
                 edit_form: Edition du point d'arrêt
+                stop_accessibility: Accessibilité du point d'arrêt
             label:
                 short_name: Nom court
                 long_name: Nom long
                 stop_area: Zone d'arrêt
                 master_stop: Fantôme de l'arrêt :
+                accessibility_calendar: Calendrier d'inaccessibilité
+                accessible: accessible
+                not_accessible: inaccessible
             action:
                 inaccessibility: Ajout d'inaccessibilité
                 create: Créer un point d'arrêt
