@@ -181,3 +181,8 @@
     text-align:center;
     font-weight:bold;
 }
+.container .dataTables_wrapper .dataTables_processing {
+    background-color: rgba(94,244,85,0.4);
+    font-weight: bold;
+    height: 60px;
+}

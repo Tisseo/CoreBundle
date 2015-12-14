@@ -52,7 +52,7 @@ tisseo:
         blank_value: Veuillez renseigner ce champs.
         unique_in_collection: Vous ne pouvez pas associer plusieurs fois le même objet.
         invalid_email: Adresse email invalide.
-
+        string_too_long: Cette valeur est trop longue. Elle ne doit pas dépasser {{ limit }} caractères.
     flash:
         error:
             exception: ⚠  : %error%
@@ -316,10 +316,11 @@ tisseo:
                 hybrid: Mixte
                 brick: Brique
             stop:
-                manage: Arrêts
+                manage: Lieux
                 point: Point d'arrêt
                 area: Zone d'arrêt
                 odt_area: Zone TAD
+                city: Commune
         physical_mode:
             title:
                 list: Modes de transport
@@ -555,7 +556,29 @@ tisseo:
                 create: Créer une zone d'arrêt
             message:
                 no_stop_area_selected: Vous n'avez pas sélectionné de zone d'arrêt valide.
-
+        city:
+            title:
+                search: Rechercher une commune
+                create: Création d'une commune
+                edit: Edition d'une commune
+            action:
+                create: Créer une commune
+            label:
+                name: Nom
+                insee: Insee
+                main_stop_area: Zone d'arrêts principale
+                stop_area: Zone d'arrêts
+                number_stop: Nombre d'arrêts
+                line: Lignes
+                delete: Supprimer
+            header:
+                edit_form: Edition d'une commune
+                stop_area: Zone d'arrêts de la commune
+            message:
+                error:
+                    stop_exist: Impossible de supprimer cette zone d'arrêts. Elle contient des arrêts.
+                success:
+                    stoparea_delete: La zone d'arrêts a bien été supprimée.
         transfer:
             title:
                 list: Transferts de la zone d'arrêt
