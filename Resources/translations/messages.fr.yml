@@ -2,6 +2,7 @@ tisseo:
     global:
         actions: Actions
         edit: Éditer
+        consult: Consulter
         preview: Prévisualiser
         validate: Valider
         show: Voir
