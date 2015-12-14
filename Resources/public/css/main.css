@@ -182,7 +182,7 @@
     font-weight:bold;
 }
 .container .dataTables_wrapper .dataTables_processing {
-    background-color: rgba(94,244,85,0.4);
+    background-color: #FFFFFF;
     font-weight: bold;
-    height: 60px;
+    top:70%;
 }
