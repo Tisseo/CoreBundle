@@ -236,6 +236,7 @@ tisseo:
             title:
                 list: Schémas
                 list_form: Schémas de la ligne
+                export: Export des modifications de schémas
             label:
                 name: Nom
                 date: Date
@@ -244,9 +245,11 @@ tisseo:
                 number: Numéro
                 group_gis: Voussure
                 deprecated: Obsolète ?
+                start_date: Date de début
             action:
                 list: Schémas
                 upload_file: Déposer un fichier
+                export: Export des schémas
                 ask_schematic: Demander un nouveau schéma
                 deprecated: Déclarer un schéma obsolète
                 group_gis: Déclarer un schéma de voussure
@@ -254,6 +257,8 @@ tisseo:
                 delete: Supprimer un schéma
             message:
                 warning_group: Attention, cette ligne appartient à la voussure %name%.
+            validation:
+                date_not_filled: Vous devez saisir une date de début pour effectuer un export
             mail:
                 object: Objet : Demande de nouveau schéma - LIGNE %line%
                 author: Auteur : %user%
