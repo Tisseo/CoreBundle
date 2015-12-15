@@ -13,7 +13,7 @@ class ExportController extends Controller
      *
      * @param string $service
      */
-    public function exportCsvAction($service)
+    public function exportCsvAction($service, $option)
     {
         $manager = $this->get($service);
 
@@ -21,7 +21,7 @@ class ExportController extends Controller
             throw new \Exception('The service used for CSV export have to provide an export function');
 
         $response = new StreamedResponse();
-        list($content, $filename) = $manager->getCsvExport();
+        list($content, $filename) = empty($option) ? $manager->getCsvExport() : $manager->getCsvExport($option);
 
         $response->setCallback(function() use ($content)
         {
@@ -57,7 +57,7 @@ class ExportController extends Controller
 
         $response->setStatusCode(200);
         $response->headers->set('Content-Type', 'application/force-download');
-        $response->headers->set('Content-Disposition','attachment; filename="'.$filename.'"');
+        $response->headers->set('Content-Disposition','attachment; filename="'.$filename.'.csv"');
 
         return $response;
     }
