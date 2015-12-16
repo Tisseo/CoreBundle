@@ -186,3 +186,27 @@
     font-weight: bold;
     top:70%;
 }
+
+/*
+    Allows to fix height on a table and displayed a vertical scrollbar (works with 2 columns)
+*/
+.table-fixed tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+    display: block;
+}
+
+.table-fixed tbody {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.table-fixed tbody td, .table-fixed thead th {
+    width: 50%;
+    float: left;
+}

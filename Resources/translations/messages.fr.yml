@@ -177,13 +177,17 @@ tisseo:
         data_exchange:
             title:
                 show: Liste des tâches
+                line_import_fh: Sélection des lignes pour l'import FH
             label:
                 job: Tâche
+                line_number: Numéro de ligne
             message:
                 job_running: Traitement %name% lancé par %user%. Lancement de nouveau traitement en attente.
                 launched_by: lancé par %user%
             action:
                 launch: Lancement
+            alert:
+                import_fh: Vous devez selectionner au moins une ligne.
 
         calendar:
             title:
