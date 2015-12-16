@@ -493,6 +493,7 @@ tisseo:
                 edit: Edition de route
                 list: Routes de la ligne %number% (version %version%)
                 link_trip_calendar: Attribution des grilles horaires aux services
+                duplicate: Dupliquer une route
             header:
                 route_stops: Itinéraire de la route
                 trip_patterns: Patrons de service
@@ -520,6 +521,8 @@ tisseo:
                 delete: Êtes-vous sûr de vouloir supprimer cette route ?
             message:
                 no_route_stops: La création de patrons de service nécessite au préalable la création d'un itinéraire de route.
+                duplicated: La route a été dupliquée.
+                removed: La route a été supprimée.
 
         stop_point:
             title:
