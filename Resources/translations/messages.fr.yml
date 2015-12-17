@@ -542,6 +542,7 @@ tisseo:
                 accessibility_calendar: Calendrier d'inaccessibilité
                 accessible: accessible
                 not_accessible: inaccessible
+                lines: Lignes
             action:
                 inaccessibility: Ajout d'inaccessibilité
                 create: Créer un point d'arrêt
