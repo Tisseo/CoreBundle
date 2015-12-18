@@ -155,10 +155,10 @@ define(['jquery', 'leaflet'], function($, L) {
     function createStopPopupContent(stop, routeOnPopupClick) {
         var content;
         if (routeOnPopupClick && stop.route) {
-            content = '<a class="leaflet-stop-popup" target="_blank" href="'+stop.route+'">'+stop.code+'</a>';
+            content = '<a class="leaflet-stop-popup" target="_blank" href="'+stop.route+'">'+stop.name+' ('+stop.code+')</a>';
         }
         else {
-            content = '<span class="leaflet-stop-popup">'+stop.code+'</span>';
+            content = '<span class="leaflet-stop-popup">'+stop.name+' ('+stop.code+')</span>';
         }
         return content;
     }
