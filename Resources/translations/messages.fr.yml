@@ -331,6 +331,10 @@ tisseo:
                 area: Zone d'arrêt
                 odt_area: Zone TAD
                 city: Commune
+            monitoring:
+                manage: Contrôles de données
+                accessibility: Suivi accessibilité
+                poi: Poi par ligne
         physical_mode:
             title:
                 list: Modes de transport
@@ -551,7 +555,7 @@ tisseo:
             message:
                 no_stop_selected: Vous n'avez pas sélectionné de point d'arrêt valide.
                 unclosable: Cette propriété de point d'arrêt n'a pu être clôturée.
-
+                no_accessibility_calendar: Il n'y a pas de calendrier d'accessibilité assigné à ce point d'arrêt
         stop_area:
             title:
                 search: Recherche de zones d'arrêt
@@ -743,6 +747,7 @@ tisseo:
                 scheduled: Régulation
                 internal_service: Desserte interne
                 zone: Zone
+                direction: Direction
             validation:
                 first_stop_dropoff: La descente doit être interdite pour le premier arrêt.
                 first_stop_regulated: Le premier arrêt doit être régulé.
@@ -810,3 +815,18 @@ tisseo:
                 end_time: A
                 is_recursive: Récursif
                 accessibility_mode: Mode
+
+        monitoring:
+            accessibility:
+                title: Suivi accessibilité
+                label:
+                    line_version: Offre
+                    start_date: Date de début
+                    to: vers
+                message:
+                    no_change: Pas de changement
+                    accessible: devient accessible
+                    not_accessible: devient inaccessible
+                validation:
+                   date_not_filled: Vous devez saisir une date de début pour pouvoir effectuer un suivi d'accessibilité
+                   line_version: Vous devez sélectionner une offre pour pouvoir effectuer un suivi d'accessibilité
