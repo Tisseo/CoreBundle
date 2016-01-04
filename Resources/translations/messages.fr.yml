@@ -825,8 +825,9 @@ tisseo:
                     to: vers
                 message:
                     no_change: Pas de changement
-                    accessible: devient accessible
-                    not_accessible: devient inaccessible
+                    gets: devient
+                    accessible: accessible
+                    not_accessible: inaccessible
                 validation:
                    date_not_filled: Vous devez saisir une date de début pour pouvoir effectuer un suivi d'accessibilité
                    line_version: Vous devez sélectionner une offre pour pouvoir effectuer un suivi d'accessibilité
