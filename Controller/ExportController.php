@@ -26,6 +26,7 @@ class ExportController extends Controller
         $response->setCallback(function() use ($content)
         {
             $handle = fopen('php://output', 'w+');
+            fwrite($handle, "\xEF\xBB\xBF"); // adds BOM utf8 fox Excel
 
             foreach($content as $index => $row)
             {
@@ -57,6 +58,7 @@ class ExportController extends Controller
 
         $response->setStatusCode(200);
         $response->headers->set('Content-Type', 'application/force-download');
+        //$response->headers->set('')
         $response->headers->set('Content-Disposition','attachment; filename="'.$filename.'.csv"');
 
         return $response;
