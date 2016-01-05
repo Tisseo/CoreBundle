@@ -844,3 +844,23 @@ tisseo:
                     poi: Points d'intérêts
                 validation:
                     line_version: Vous devez sélectionner une offre pour pouvoir consulter les POI
+    tadhub:
+        application: Tadhub
+        welcome: Bienvenue sur Tadhub
+        menu:
+            callcenter: Central d'appel
+        label:
+            departure_town: Commune départ
+            departure_stop: Arrêt départ
+            arrival_town: Commune arrivée
+            arrival_stop: Arrêt arrivée
+            booking_date: Date
+            booking_hour: Heure
+            pmr: PMR
+            without_connection: Sans correspondance
+            pedestrian_path: Avec trajet piéton
+            booking_period: Ignorer délai résa
+
+        callcenter:
+            search:
+                title: Recherche d'itinéraires
