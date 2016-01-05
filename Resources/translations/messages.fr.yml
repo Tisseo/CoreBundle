@@ -555,12 +555,13 @@ tisseo:
             message:
                 no_stop_selected: Vous n'avez pas sélectionné de point d'arrêt valide.
                 unclosable: Cette propriété de point d'arrêt n'a pu être clôturée.
-                no_accessibility_calendar: Il n'y a pas de calendrier d'accessibilité assigné à ce point d'arrêt
+                no_accessibility_calendar: Il n'y a pas de calendrier d'accessibilité associé à ce point d'arrêt
         stop_area:
             title:
                 search: Recherche de zones d'arrêt
                 create: Création de zone d'arrêt
                 edit: Edition de zone d'arrêt
+                geometries: Géométrie de la zone d'arrêt
             header:
                 edit_form: Edition de la zone d'arrêt
                 stop_point: Liste des points d'arrêt
@@ -570,6 +571,9 @@ tisseo:
                 city: Ville
                 transfer_duration: Temps de transfert intra-zone par défaut (en minutes)
                 all_stops: Tous les points d'arrêt
+                x: X
+                y: Y
+                srid: SRID
             action:
                 internal_transfert: Transferts intra-zone
                 external_transfert: Transferts extra-zone
@@ -829,5 +833,13 @@ tisseo:
                     accessible: accessible
                     not_accessible: inaccessible
                 validation:
-                   date_not_filled: Vous devez saisir une date de début pour pouvoir effectuer un suivi d'accessibilité
-                   line_version: Vous devez sélectionner une offre pour pouvoir effectuer un suivi d'accessibilité
+                    date_not_filled: Vous devez saisir une date de début pour pouvoir effectuer un suivi d'accessibilité
+                    line_version: Vous devez sélectionner une offre pour pouvoir effectuer un suivi d'accessibilité
+            poi:
+                title: Poi par ligne
+                label:
+                    city: Commune
+                    stop_area: Zone d'arrêt
+                    poi: Points d'intérêts
+                validation:
+                    line_version: Vous devez sélectionner une offre pour pouvoir consulter les POI
