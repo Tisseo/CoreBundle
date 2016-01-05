@@ -176,6 +176,7 @@
     border-style:solid;
     border-width:1px;
     border-color:#939393;
+    font-family:inherit;
 }
 .leaflet-stop-popup {
     font-size:medium;
