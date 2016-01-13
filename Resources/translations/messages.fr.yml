@@ -556,6 +556,7 @@ tisseo:
                 no_stop_selected: Vous n'avez pas sélectionné de point d'arrêt valide.
                 unclosable: Cette propriété de point d'arrêt n'a pu être clôturée.
                 no_accessibility_calendar: Il n'y a pas de calendrier d'accessibilité associé à ce point d'arrêt
+                no_lines: Il n'y a actuellement aucune offre passant par ce point d'arrêt
         stop_area:
             title:
                 search: Recherche de zones d'arrêt
