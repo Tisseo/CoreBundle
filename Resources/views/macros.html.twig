@@ -20,6 +20,18 @@
         {% endif %}
                 <span>{{ object.number }}</span>
             </div>
+    {% elseif type == 'api' %}
+        {% if object.shortName %}
+            {% if size == 'small' %}
+        <div class="line-number line-small" style="color:{{ object.fgXmlColor }}; background-color:{{ object.bgXmlColor }}; font-family:sans-serif; font-weight: bold;">
+            {% elseif size == 'big' %}
+        <div class="line-number line-big" style="color:{{ object.fgXmlColor }}; background-color:{{ object.bgXmlColor }}; font-family:sans-serif; font-weight: bold;">
+            {% elseif size == 'free' %}
+        <div class="line-number line-free" style="color:{{ object.fgXmlColor }}; background-color:{{ object.bgXmlColor }}; font-family:sans-serif; font-weight: bold;">
+            {% endif %}
+            <span>{{ object.shortName }}</span>
+        </div>
+        {% endif %}
     {% endif %}
 {% endmacro %}
 
@@ -38,5 +50,12 @@
         {% for day in pattern %}
         <span class="{% if day %}green-fg-day{% else %}red-fg-day{% endif %}">{{ ('tisseo.global.short_days.'~loop.index)|trans }}</span>
         {% endfor %}
+    </span>
+{% endmacro %}
+
+{% macro line_api_number(line) %}
+    <span class="api-line"
+          style="color:{{ line.fgXmlColor}}; background-color:{{ line.bgXmlColor}};">
+        {{ line.shortName }}
     </span>
 {% endmacro %}
