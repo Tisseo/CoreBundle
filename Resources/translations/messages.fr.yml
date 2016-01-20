@@ -893,5 +893,5 @@ tisseo:
             back_trip: Trajet retour
             next_solutions: Solutions suivantes
             next_day: Jour suivant
-            clear_form: Réinitialiser la recherche (Alt + R)
+            clear_form: Réinitialiser (Alt + R)
             book_now: Réserver maintenant
