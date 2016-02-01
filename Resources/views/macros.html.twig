@@ -23,13 +23,25 @@
     {% elseif type == 'api' %}
         {% if object.shortName %}
             {% if size == 'small' %}
-        <div class="line-number line-small" style="color:{{ object.fgXmlColor }}; background-color:{{ object.bgXmlColor }}; font-family:sans-serif; font-weight: bold;">
+                <div class="line-number line-small" style="color:{{ object.fgXmlColor }}; background-color:{{ object.bgXmlColor }}; font-family:sans-serif; font-weight: bold;">
             {% elseif size == 'big' %}
-        <div class="line-number line-big" style="color:{{ object.fgXmlColor }}; background-color:{{ object.bgXmlColor }}; font-family:sans-serif; font-weight: bold;">
+                <div class="line-number line-big" style="color:{{ object.fgXmlColor }}; background-color:{{ object.bgXmlColor }}; font-family:sans-serif; font-weight: bold;">
             {% elseif size == 'free' %}
-        <div class="line-number line-free" style="color:{{ object.fgXmlColor }}; background-color:{{ object.bgXmlColor }}; font-family:sans-serif; font-weight: bold;">
+                <div class="line-number line-free" style="color:{{ object.fgXmlColor }}; background-color:{{ object.bgXmlColor }}; font-family:sans-serif; font-weight: bold;">
             {% endif %}
             <span>{{ object.shortName }}</span>
+        </div>
+        {% endif %}
+    {% elseif type == 'tad' %}
+        {% if object.lineCode %}
+            {% if size == 'small' %}
+                <div class="line-number line-small" style="color:{{ object.fgColor }}; background-color:{{ object.bgColor }}; font-family:sans-serif; font-weight: bold;">
+            {% elseif size == 'big' %}
+                <div class="line-number line-big" style="color:{{ object.fgColor }}; background-color:{{ object.bgColor }}; font-family:sans-serif; font-weight: bold;">
+            {% elseif size == 'free' %}
+                <div class="line-number line-free" style="color:{{ object.fgColor }}; background-color:{{ object.bgColor }}; font-family:sans-serif; font-weight: bold;">
+            {% endif %}
+            <span>{{ object.lineCode }}</span>
         </div>
         {% endif %}
     {% endif %}
