@@ -47,3 +47,33 @@
     {%- endif -%}
     <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain)|raw }}</button>
 {% endblock button_widget %}
+
+{% block tisseo_email_widget %}
+    {% spaceless %}
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
+            {%  set attr = attr|merge({'class': ((attr.class|default('') ~ ' form-control')|trim)}) %}
+            <input type="email"  {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block tisseo_password_widget %}
+    {% spaceless %}
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+            {%  set attr = attr|merge({'class': ((attr.class|default('') ~ ' form-control')|trim)}) %}
+            <input type="password"  {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        </div>
+    {% endspaceless %}
+{% endblock %}
+
+{% block tisseo_tel_widget %}
+    {% spaceless %}
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>
+            {%  set attr = attr|merge({'class': ((attr.class|default('') ~ ' form-control')|trim)}) %}
+            <input type="tel"  {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        </div>
+    {% endspaceless %}
+{% endblock %}
