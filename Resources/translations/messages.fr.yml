@@ -314,6 +314,7 @@ tisseo:
             poi_type: Types de poi
             color: Couleurs
             log: Logs
+            depot: Dépôts
             transport:
                 manage: Transport
                 route: Routes
@@ -450,6 +451,17 @@ tisseo:
                 previous_data: Donnée précédente
                 inserted_data: Donnée insérée
                 user: Utilisateur
+
+        depot:
+            title:
+                list: Dépôts
+                create: Création de dépôt
+                edit: Edition de dépôt
+            label:
+                short_name: Nom court
+                long_name: Nom long
+            action:
+                create: Créer un dépôt
 
         line_version:
             title:
