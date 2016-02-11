@@ -528,6 +528,7 @@ tisseo:
                     loop: Boucle
                     area: Zonal
                 duplicate: Selectionner l'offre sur laquelle dupliquer la route
+                export: Export
             action:
                 services: Services
                 create: Créer une route
