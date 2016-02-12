@@ -1,19 +1,21 @@
-<script type="text/javascript">
+<script>
 requirejs.config({
     urlArgs: '{{ assets_version }}',
     paths: {
-        'jquery/textfill':                  'bundles/tisseocore/js/jquery.textfill.min',
-        'jquery/datatables':                'bundles/tisseocore/js/jquery.dataTables.min',
-        'jquery_ui_draggable':              'components/jquery-ui/ui/minified/jquery.ui.draggable.min',
-        'jquery_ui_droppable':              'components/jquery-ui/ui/minified/jquery.ui.droppable.min',
-        'jquery_ui_sortable':               'components/jquery-ui/ui/minified/jquery.ui.sortable.min',
-        'bootbox':                          'components/bootbox/bootbox',
-        'core/textfill':                    'bundles/tisseocore/js/textfill',
-        'core/form':                        'bundles/tisseocore/js/form',
-        'core/datatables':                  'bundles/tisseocore/js/datatables',
-        'core/collection':                  'bundles/tisseocore/js/collection',
-        'leaflet':                          'components/leaflet/js/leaflet.min',
-        'core/leaflet_utils':               'bundles/tisseocore/js/leaflet/leaflet_utils'
+        'jquery/textfill':                      'bundles/tisseocore/js/jquery.textfill.min',
+        'jquery/datatables':                    'bundles/tisseocore/js/jquery.dataTables.min',
+        'jquery_ui_draggable':                  'components/jquery-ui/ui/minified/jquery.ui.draggable.min',
+        'jquery_ui_droppable':                  'components/jquery-ui/ui/minified/jquery.ui.droppable.min',
+        'jquery_ui_sortable':                   'components/jquery-ui/ui/minified/jquery.ui.sortable.min',
+        'smalot/bootstrap-datetimepicker':      'bundles/tisseocore/js/bootstrap-datetimepicker.min',
+        'smalot/bootstrap-datetimepicker/fr':   'bundles/tisseocore/js/bootstrap-datetimepicker.fr',
+        'bootbox':                              'components/bootbox/bootbox',
+        'core/textfill':                        'bundles/tisseocore/js/textfill',
+        'core/form':                            'bundles/tisseocore/js/form',
+        'core/datatables':                      'bundles/tisseocore/js/datatables',
+        'core/collection':                      'bundles/tisseocore/js/collection',
+        'leaflet':                              'components/leaflet/js/leaflet.min',
+        'core/leaflet_utils':                   'bundles/tisseocore/js/leaflet/leaflet_utils'
     },
     shim: {
         'bootbox': {
@@ -45,6 +47,12 @@ requirejs.config({
         jquery_ui_sortable: {
             deps: ['jquery', 'jquery_ui_core', 'jquery_ui_mouse', 'jquery_ui_widget'],
             exports: "jQuery"
+        },
+        'smalot/bootstrap-datetimepicker': {
+            deps: ['bootstrap']
+        },
+        'smalot/bootstrap-datetimepicker/fr': {
+            deps: ['smalot/bootstrap-datetimepicker']
         }
     },
     deps: ['utils', 'jquery', 'core/form']
