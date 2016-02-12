@@ -20,6 +20,12 @@
             <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
         {% endstylesheets %}
     {% endif %}
+    {% if datetimepicker %}
+        {% stylesheets 'bundles/tisseocore/css/bootstrap-datetimepicker.min.css'
+                       filter='cssrewrite' output='css/leaflet.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+        {% endstylesheets %}
+    {% endif %}
 {% endblock %}
 
 {% block container %}
