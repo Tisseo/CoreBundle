@@ -287,9 +287,15 @@ tisseo:
                 comment: Commentaire
                 associated_lines: Lignes associées
                 schematic: Schématique
+                printings: Tirages
             action:
                 create: Créer une voussure
                 export: Export des voussures
+                printing_export: Export des tirages
+            message:
+                not_found: Voussure introuvable
+            printing:
+                title: Commande d'impression
 
         datasource:
             label:
