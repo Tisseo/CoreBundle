@@ -5,6 +5,7 @@ namespace Tisseo\CoreBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 abstract class CoreController extends Controller
 {
@@ -46,5 +47,20 @@ abstract class CoreController extends Controller
                 'messages'
             )
         );
+    }
+
+    /**
+     * Preparing a JsonResponse
+     *
+     * @param array $data
+     * @param integer $statusCode
+     */
+    protected function prepareJsonResponse($data = array(), $statusCode = JsonResponse::HTTP_STATUS_OK)
+    {
+        $response = new JsonResponse();
+        $response->setData($data);
+        $response->setStatusCode($statusCode);
+
+        return $response;
     }
 }
