@@ -61,6 +61,7 @@ tisseo:
             created: Création effectuée
             edited: Modifications sauvegardées
             deleted: Suppression effectuée
+            removed: Suppression effectuée
             closed: Clôture effectuée
             detached: Suppression effectuée
             sent: Demande envoyée

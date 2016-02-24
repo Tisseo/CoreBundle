@@ -61,6 +61,20 @@
     float:right;
     display:inline-block;
 }
+/* form-panel (centered-form template) */
+.form-panel {
+    padding:5px 20px;
+}
+.form-panel h1 {
+    margin:5px 0 8px;
+}
+.form-panel .panel {
+    padding:10px;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    border:none;
+    margin-bottom:0;
+}
 .small-button {
     width:20px;
     height:20px;
@@ -184,35 +198,28 @@
     font-weight:bold;
 }
 .container .dataTables_wrapper .dataTables_processing {
-    background-color: #FFFFFF;
-    font-weight: bold;
+    background-color:#FFFFFF;
+    font-weight:bold;
     top:70%;
 }
-
-/*
-    Allows to fix height on a table and displayed a vertical scrollbar (works with 2 columns)
-*/
+/* allows to fix height on a table and displayed a vertical scrollbar (works with 2 columns) */
 .table-fixed tr:after {
-    content: ' ';
-    display: block;
-    visibility: hidden;
-    clear: both;
+    content:' ';
+    display:block;
+    visibility:hidden;
+    clear:both;
 }
-
 .table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
-    display: block;
+    display:block;
 }
-
 .table-fixed tbody {
-    height: 400px;
-    overflow-y: auto;
+    height:400px;
+    overflow-y:auto;
 }
-
 .table-fixed tbody td, .table-fixed thead th {
-    width: 50%;
-    float: left;
+    width:50%;
+    float:left;
 }
-
 .link-line-version:hover {
-    text-decoration: none;
+    text-decoration:none;
 }

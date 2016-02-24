@@ -15,7 +15,8 @@ requirejs.config({
         'core/datatables':                      'bundles/tisseocore/js/datatables',
         'core/collection':                      'bundles/tisseocore/js/collection',
         'leaflet':                              'components/leaflet/js/leaflet.min',
-        'core/leaflet_utils':                   'bundles/tisseocore/js/leaflet/leaflet_utils'
+        'core/leaflet_utils':                   'bundles/tisseocore/js/leaflet/leaflet_utils',
+        'core/autocomplete':                    'bundles/tisseocore/js/autocomplete'
     },
     shim: {
         'bootbox': {
@@ -53,6 +54,9 @@ requirejs.config({
         },
         'smalot/bootstrap-datetimepicker/fr': {
             deps: ['smalot/bootstrap-datetimepicker']
+        },
+        'core/autocomplete': {
+            deps: ['jquery_ui_autocomplete']
         }
     },
     deps: ['utils', 'jquery', 'core/form']
