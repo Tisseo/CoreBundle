@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 abstract class CoreController extends Controller
 {
@@ -55,7 +56,7 @@ abstract class CoreController extends Controller
      * @param array $data
      * @param integer $statusCode
      */
-    protected function prepareJsonResponse($data = array(), $statusCode = JsonResponse::HTTP_STATUS_OK)
+    protected function prepareJsonResponse($data = array(), $statusCode = Response::HTTP_OK)
     {
         $response = new JsonResponse();
         $response->setData($data);

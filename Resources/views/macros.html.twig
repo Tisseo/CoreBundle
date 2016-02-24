@@ -71,3 +71,7 @@
         {{ line.shortName }}
     </span>
 {% endmacro %}
+
+{% macro checkbox(boolean) %}
+    <input type="checkbox" onclick="return false;" {% if boolean %}checked{% endif %}>
+{% endmacro %}
