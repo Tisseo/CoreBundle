@@ -14,7 +14,7 @@ define(['jquery'], function($) {
      *     </div>
      *     <button class='add-item-collection-btn'></button>
      * </form>
-    */
+     */
 
     var deleteEvent = function(container) {
         $(container).on('click', function () {

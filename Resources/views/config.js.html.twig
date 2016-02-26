@@ -2,21 +2,23 @@
 requirejs.config({
     urlArgs: '{{ assets_version }}',
     paths: {
-        'jquery/textfill':                      'bundles/tisseocore/js/jquery.textfill.min',
-        'jquery/datatables':                    'bundles/tisseocore/js/jquery.dataTables.min',
+        'bootbox':                              'components/bootbox/bootbox',
+        'leaflet':                              'components/leaflet/js/leaflet.min',
         'jquery_ui_draggable':                  'components/jquery-ui/ui/minified/jquery.ui.draggable.min',
         'jquery_ui_droppable':                  'components/jquery-ui/ui/minified/jquery.ui.droppable.min',
         'jquery_ui_sortable':                   'components/jquery-ui/ui/minified/jquery.ui.sortable.min',
+        'jquery/textfill':                      'bundles/tisseocore/js/jquery.textfill.min',
+        'jquery/datatables':                    'bundles/tisseocore/js/jquery.dataTables.min',
         'smalot/bootstrap-datetimepicker':      'bundles/tisseocore/js/bootstrap-datetimepicker.min',
         'smalot/bootstrap-datetimepicker/fr':   'bundles/tisseocore/js/bootstrap-datetimepicker.fr',
-        'bootbox':                              'components/bootbox/bootbox',
         'core/textfill':                        'bundles/tisseocore/js/textfill',
         'core/form':                            'bundles/tisseocore/js/form',
         'core/datatables':                      'bundles/tisseocore/js/datatables',
         'core/collection':                      'bundles/tisseocore/js/collection',
-        'leaflet':                              'components/leaflet/js/leaflet.min',
         'core/leaflet_utils':                   'bundles/tisseocore/js/leaflet/leaflet_utils',
-        'core/autocomplete':                    'bundles/tisseocore/js/autocomplete'
+        'core/autocomplete':                    'bundles/tisseocore/js/autocomplete',
+        'core/select-to-hidden':                'bundles/tisseocore/js/select-to-hidden',
+        'core/delete-confirm':                  'bundles/tisseocore/js/delete-confirm'
     },
     shim: {
         'bootbox': {
@@ -57,6 +59,12 @@ requirejs.config({
         },
         'core/autocomplete': {
             deps: ['jquery_ui_autocomplete']
+        },
+        'core/select-to-hidden': {
+            deps: ['jquery']
+        },
+        'core/delete-confirm': {
+            deps: ['jquery', 'bootbox']
         }
     },
     deps: ['utils', 'jquery', 'core/form']
