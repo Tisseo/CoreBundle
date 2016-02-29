@@ -1,8 +1,10 @@
 {% extends "TisseoCoreBundle::container.html.twig" %}
 {% set datatable = true %}
+{% set width = width is empty ? 10 : width %}
+{% set offset = (12 - width)/2 %}
 
 {% block main_content %}
-    <div class="form-panel col-md-8 col-md-offset-2" role="main">
+    <div class="form-panel col-md-{{ width }} col-md-offset-{{ offset }}" role="main">
         {% block advancedConfirmation %}{% endblock %}
         <h1>{% block list_title %}{{ pageTitle|trans }}{% endblock %}</h1>
         {% block header_content %}{% endblock %}
