@@ -42,6 +42,7 @@
 {% endblock %}
 
 {% block javascripts %}
+    {{ parent() }}
     {% if leaflet %}
         <script>
             var stop_icon_pin_url = "{{ asset('bundles/tisseocore/images/stop-icon.png') }}";
