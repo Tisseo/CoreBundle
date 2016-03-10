@@ -15,7 +15,7 @@
         "php": ">=5.4.3",
         "components/jquery": "~1.11.1",
         "components/jqueryui": "~1.10.3",
-        "components/bootbox": "dev-master",
+        "makeusabrew/bootbox": "dev-master",
         "drmonty/leaflet": "~0.7.7"
     },
     "autoload" : {
