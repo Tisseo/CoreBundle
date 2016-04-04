@@ -68,6 +68,13 @@ requirejs.config({
             deps: ['jquery', 'bootbox']
         }
     },
-    deps: ['utils', 'jquery', 'core/form']
+    deps: ['utils', 'jquery', 'core/form'],
+    packages: [
+        {
+            name: "codemirror",
+            location: "assets/vendor/codemirror",
+            main: "lib/codemirror"
+        }
+    ]
 });
 </script>

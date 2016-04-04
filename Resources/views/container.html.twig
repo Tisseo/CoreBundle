@@ -26,6 +26,12 @@
             <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
         {% endstylesheets %}
     {% endif %}
+    {% if codemirror %}
+        {% stylesheets 'assets/vendor/codemirror/lib/codemirror.css'
+                        filter='cssrewrite' output='css/codemirror.css' %}
+            <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+        {% endstylesheets %}
+    {% endif %}
 {% endblock %}
 
 {% block container %}
