@@ -5,7 +5,7 @@ define(['jquery', 'bootbox'], function($, bootbox) {
      * Expected HTML structure to make this script work
      * <a href='' class='confirm' data-message=''></a>
      */
-    var init = function (l) {
+    var init = function (l, callback) {
         var locale = l || 'fr';
         bootbox.setDefaults({
             locale: locale
@@ -16,7 +16,11 @@ define(['jquery', 'bootbox'], function($, bootbox) {
             var self = this;
             bootbox.confirm($(this).data('message'), function(result) {
                 if (result) {
-                    window.location = self.href;
+                    if (typeof callback === "function") {
+                        callback();
+                    } else {
+                        window.location = self.href;
+                    }
                 }
             });
         });
