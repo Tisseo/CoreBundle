@@ -15,12 +15,10 @@ define(['jquery', 'bootbox'], function($, bootbox) {
             event.preventDefault();
             var self = this;
             bootbox.confirm($(this).data('message'), function(result) {
-                if (result) {
-                    if (typeof callback === "function") {
-                        callback();
-                    } else {
-                        window.location = self.href;
-                    }
+                if (typeof callback === "function") {
+                    callback(result);
+                } else if (result) {
+                    window.location = self.href;
                 }
             });
         });
