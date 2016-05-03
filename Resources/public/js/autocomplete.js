@@ -4,7 +4,6 @@ define(['jquery_ui_autocomplete'],  function($) {
         var delay = parseInt(d) || 300;
 
         $(document).ready(function() {
-            
             selected = $(target).find(':selected');
             if (selected.length === 1) {
                 $(input).val(selected.html());
@@ -14,9 +13,7 @@ define(['jquery_ui_autocomplete'],  function($) {
                 source: function (request, response) {
                     $.ajax({
                         url: $(this.element).data('url'),
-                        dataType: 'json',
                         data : { term: request.term },
-                        type: 'POST',
                         success: function(data) {
                             if (data.length > 0) {
                                 response($.map(data, function(item) {
