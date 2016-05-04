@@ -19,7 +19,7 @@ requirejs.config({
         'core/leaflet_utils':                   'bundles/tisseocore/js/leaflet/leaflet_utils',
         'core/autocomplete':                    'bundles/tisseocore/js/autocomplete',
         'core/select-to-hidden':                'bundles/tisseocore/js/select-to-hidden',
-        'core/delete-confirm':                  'bundles/tisseocore/js/delete-confirm'
+        'core/confirm':                         'bundles/tisseocore/js/confirm'
     },
     shim: {
         'bootbox': {
@@ -68,6 +68,13 @@ requirejs.config({
             deps: ['jquery', 'bootbox']
         }
     },
-    deps: ['utils', 'jquery', 'core/form']
+    deps: ['utils', 'jquery', 'core/form'],
+    packages: [
+        {
+            name: "codemirror",
+            location: "assets/vendor/codemirror",
+            main: "lib/codemirror"
+        }
+    ]
 });
 </script>
