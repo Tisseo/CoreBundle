@@ -1,5 +1,10 @@
 <script>
 requirejs.config({
+    config: {
+        i18n: {
+            locale: "{{ app.request.locale }}"
+        }
+    },
     urlArgs: '{{ assets_version }}',
     paths: {
         'bootbox':                              'components/bootbox/bootbox',
