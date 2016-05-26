@@ -30,6 +30,8 @@ tisseo:
         annotations: Annotations
         no_items: Aucun élément à afficher
         no_items_short: Aucun
+        yes: Oui
+        no: Non
         short_days:
             1: L
             2: M
