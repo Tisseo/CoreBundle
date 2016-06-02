@@ -22,6 +22,7 @@ requirejs.config({
         'core/collection':                      'bundles/tisseocore/js/collection',
         'core/improved-collection':             'bundles/tisseocore/js/improved-collection',
         'core/leaflet_utils':                   'bundles/tisseocore/js/leaflet/leaflet_utils',
+        'core/map':                             'bundles/tisseocore/js/leaflet/map',
         'core/autocomplete':                    'bundles/tisseocore/js/autocomplete',
         'core/select-to-hidden':                'bundles/tisseocore/js/select-to-hidden',
         'core/confirm':                         'bundles/tisseocore/js/confirm'
@@ -43,6 +44,9 @@ requirejs.config({
             deps: ['jquery/datatables', 'jquery/textfill']
         },
         'core/leaflet_utils': {
+            deps: ['jquery', 'leaflet']
+        },
+        'core/map': {
             deps: ['jquery', 'leaflet']
         },
         jquery_ui_droppable: {
