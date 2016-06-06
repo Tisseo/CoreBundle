@@ -63,7 +63,7 @@ define(['jquery', 'leaflet'], function($, L) {
     };
 
     var draw_line = function(line, geojson) {
-        if (geojson) {
+        if (geojson && geojson.coordinates && geojson.coordinates.length > 0) {
             layers.lineLayer.clearLayers().addLayer(
                 L.geoJson(geojson, {color: '#'+line.color, weight: default_configuration.LINE_WEIGHT, opacity: default_configuration.LINE_OPACITY})
             );
