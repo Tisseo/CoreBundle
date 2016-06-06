@@ -63,9 +63,11 @@ define(['jquery', 'leaflet'], function($, L) {
     };
 
     var draw_line = function(line, geojson) {
-        layers.lineLayer.clearLayers().addLayer(
-            L.geoJson(geojson, {color: '#'+line.color, weight: default_configuration.LINE_WEIGHT, opacity: default_configuration.LINE_OPACITY})
-        );
+        if (geojson) {
+            layers.lineLayer.clearLayers().addLayer(
+                L.geoJson(geojson, {color: '#'+line.color, weight: default_configuration.LINE_WEIGHT, opacity: default_configuration.LINE_OPACITY})
+            );
+        }
     };
 
     var reset_map = function() {
