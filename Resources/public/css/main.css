@@ -226,3 +226,6 @@
 .link-line-version:hover {
     text-decoration:none;
 }
+.line-version-date {
+    font-size:0.9em;
+}

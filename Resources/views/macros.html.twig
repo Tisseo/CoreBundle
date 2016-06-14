@@ -47,13 +47,11 @@
     {% endif %}
 {% endmacro %}
 
-{% macro line_version_startDate(lineVersion, date) %}
-    {{ lineVersion.ProcessStatus(date) }}
-
+{% macro line_version_date(lineVersion, dateType) %}
     {% if lineVersion.status == "new" %}
-        <span class="label label-info">{{ lineVersion.startDate|date('d/m/Y') }}</span>
+        <span class="line-version-date label label-info">{{ attribute(lineVersion, dateType)|date('d/m/Y') }}</span>
     {% elseif lineVersion.status == "published" %}
-        <span class="label label-success">{{ lineVersion.startDate|date('d/m/Y') }}</span>
+        <span class="line-version-date label label-success">{{ attribute(lineVersion, dateType)|date('d/m/Y') }}</span>
     {% endif %}
 {% endmacro %}
 
