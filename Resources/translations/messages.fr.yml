@@ -34,10 +34,10 @@ tisseo:
         to_date: au
         yes: Oui
         no: Non
-        lock: Vérouiller
-        unlock: Déverouiller
-        locked: Vérouillé
-        unlocked: Déverouillé
+        lock: Verrouiller
+        unlock: Déverrouiller
+        locked: Verrouillé
+        unlocked: Déverrouillé
         short_days:
             1: L
             2: M
