@@ -166,6 +166,12 @@
     color:white;
     text-decoration:none;
 }
+.header-ribbon.alert-ribbon {
+    background-color:#d2322d;
+}
+.header-ribbon.alert-ribbon:hover {
+    background-color:#ed9c28;
+}
 .panel {
     margin-bottom:20px;
 }
