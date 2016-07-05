@@ -30,8 +30,14 @@ tisseo:
         annotations: Annotations
         no_items: Aucun élément à afficher
         no_items_short: Aucun
+        from_date: du
+        to_date: au
         yes: Oui
         no: Non
+        lock: Verrouiller
+        unlock: Déverrouiller
+        locked: Verrouillé
+        unlocked: Déverrouillé
         short_days:
             1: L
             2: M
@@ -40,6 +46,14 @@ tisseo:
             5: V
             6: S
             7: D
+        medium_days:
+            1: Lu
+            2: Ma
+            3: Me
+            4: Je
+            5: Ve
+            6: Sa
+            7: Di
         long_days:
             1: Lundi
             2: Mardi
