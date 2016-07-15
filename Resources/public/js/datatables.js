@@ -1,5 +1,5 @@
 define(['jquery', 'core/textfill', 'datatables'], function($) {
-    datatable = function(paginate, margin, iDisplayLength, processing, serverSide, ajax) {
+    datatable = function(paginate, margin, iDisplayLength, processing, serverSide, caseInsensitive, ajax) {
         datatables = [];
         $(document).ready(function() {
             $(".datatable").each(function(index) {
@@ -10,6 +10,9 @@ define(['jquery', 'core/textfill', 'datatables'], function($) {
                     "processing": processing,
                     "serverSide": serverSide,
                     "ajax": ajax,
+                    "search": {
+                        "caseInsensitive": caseInsensitive
+                    },
                     "searchDelay": 750,
                     "createdRow": function(row, data) {
                         $(row).find(".line-small").textfill({
