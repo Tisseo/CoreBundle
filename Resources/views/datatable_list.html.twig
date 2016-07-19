@@ -33,13 +33,17 @@
         {% if not iDisplayLength %}
             {% set iDisplayLength = 100 %}
         {% endif %}
+        {% if not caseInsensitive %}
+            {% set caseInsensitive = 'true' %}
+        {% endif %}
         <script>
             require(['core/datatables'], function() {
                 datatable({{ paginate }},
                     {{ margin }},
                     {{ iDisplayLength }},
                     {{ processing }},
-                    {{ serverSide }}
+                    {{ serverSide }},
+                    {{ caseInsensitive }}
                     {% if ajax is defined %}
                         ,'{{ ajax }}'
                     {% endif %}

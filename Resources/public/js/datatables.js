@@ -1,5 +1,5 @@
 define(['jquery', 'core/textfill', 'datatables'], function($) {
-    datatable = function(paginate, margin, iDisplayLength, processing, serverSide, ajax) {
+    datatable = function(paginate, margin, iDisplayLength, processing, serverSide, caseInsensitive, ajax) {
         datatables = [];
         $(document).ready(function() {
             $(".datatable").each(function(index) {
@@ -10,6 +10,9 @@ define(['jquery', 'core/textfill', 'datatables'], function($) {
                     "processing": processing,
                     "serverSide": serverSide,
                     "ajax": ajax,
+                    "search": {
+                        "caseInsensitive": caseInsensitive
+                    },
                     "searchDelay": 750,
                     "createdRow": function(row, data) {
                         $(row).find(".line-small").textfill({
@@ -65,19 +68,19 @@ define(['jquery', 'core/textfill', 'datatables'], function($) {
                 });
                 datatables[index] = datatable;
             });
-            if (margin)
+            if (margin) {
                 $('.datatable').parent().css('margin-bottom', margin+'px');
+            }
 
             var searchDelay = null;
             $('div.dataTables_filter input').off('keyup.DT input.DT');
             $('div.dataTables_filter input').on('keyup', function() {
-                var search = $('div.dataTables_filter input').val();
+                var search = $(this).val();
+                datatable_index = parseInt($(this).parents('div.dataTables_filter').attr('id').replace(/^\D+/g, ''));
                 clearTimeout(searchDelay);
                 searchDelay = setTimeout(function() {
-                    if (search != null) {
-                        $.each(datatables, function(index, dt_table) {
-                            dt_table.search(search).draw();
-                        });
+                    if (search !== null) {
+                        datatables[datatable_index].search(search).draw();
                     }
                 }, 750);
             });
