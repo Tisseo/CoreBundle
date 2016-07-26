@@ -17,7 +17,8 @@
         "components/jqueryui": "~1.10.3",
         "makeusabrew/bootbox": "dev-master",
         "drmonty/leaflet": "~0.7.7",
-        "egeloen/ckeditor-bundle": "~4.0.0"
+        "egeloen/ckeditor-bundle": "~4.0.0",
+        "bmatzner/fontawesome-bundle": "~4.6"
     },
     "autoload" : {
         "psr-4" : { "Tisseo\\CoreBundle\\" : "" }
