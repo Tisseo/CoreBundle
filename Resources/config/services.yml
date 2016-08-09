@@ -1,23 +1,17 @@
-parameters:
-    tisseo_core.datepicker.class: Tisseo\CoreBundle\Form\Type\DatepickerType
-    tisseo_core.tel.class: Tisseo\CoreBundle\Form\Type\TelType
-    tisseo_core.email.class: Tisseo\CoreBundle\Form\Type\EmailType
-    tisseo_core.password.class: Tisseo\CoreBundle\Form\Type\PasswordType
-
 services:
     form.type.tisseo_datepicker:
-        class: %tisseo_core.datepicker.class%
+        class: Tisseo\CoreBundle\Form\Type\DatepickerType
         tags:
             - { name: form.type, alias: tisseo_datepicker }
     form.type.tisseo_tel:
-        class: %tisseo_core.tel.class%
+        class: Tisseo\CoreBundle\Form\Type\TelType
         tags:
             - { name: form.type, alias: tisseo_tel }
     form.type.tisseo_email:
-        class: %tisseo_core.email.class%
+        class: Tisseo\CoreBundle\Form\Type\EmailType
         tags:
             - { name: form.type, alias: tisseo_email }
     form.type.tisseo_password:
-        class: %tisseo_core.password.class%
+        class: Tisseo\CoreBundle\Form\Type\PasswordType
         tags:
             - { name: form.type, alias: tisseo_password }
