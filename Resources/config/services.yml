@@ -1,4 +1,8 @@
 services:
+    tisseo.core_bundle.login.success.handler:
+        class: Tisseo\CoreBundle\Security\Authentification\LoginSuccessHandler
+        arguments:  ['@doctrine', '@router', '@session']
+
     form.type.tisseo_datepicker:
         class: Tisseo\CoreBundle\Form\Type\DatepickerType
         tags:
