@@ -76,7 +76,12 @@ define(['jquery', 'core/textfill', 'datatables'], function($) {
             $('div.dataTables_filter input').off('keyup.DT input.DT');
             $('div.dataTables_filter input').on('keyup', function() {
                 var search = $(this).val();
+
                 datatable_index = parseInt($(this).parents('div.dataTables_filter').attr('id').replace(/^\D+/g, ''));
+                if (isNaN(datatable_index) && datatables.length == 1){
+                    datatable_index = 0;
+                }
+
                 clearTimeout(searchDelay);
                 searchDelay = setTimeout(function() {
                     if (search !== null) {
