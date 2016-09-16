@@ -66,18 +66,4 @@ abstract class CoreController extends Controller
             throw $this->createAccessDeniedException();
         }
     }
-
-    /**
-     * TODO: useless function since denyAccessUnlessGranted exists in symfony controller
-     * Deprecated, deleted in 2.0
-     * Checking access rights
-     *
-     * @param string $permission
-     */
-    protected function isGranted($permission)
-    {
-        if ($this->get('security.context')->isGranted($permission) === false) {
-            throw $this->createAccessDeniedException();
-        }
-    }
 }
