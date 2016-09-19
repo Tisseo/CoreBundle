@@ -53,17 +53,4 @@ abstract class CoreController extends Controller
 
         return $response;
     }
-
-    /**
-     * TODO: replace calls in other bundles
-     * Deprecated, we should check AJAX with other methods
-     * use isAjax($request, $method) instead
-     * deleted on version 2.0
-     */
-    protected function isPostAjax(Request $request)
-    {
-        if (!($request->isXmlHttpRequest() && $request->isMethod('POST'))) {
-            throw $this->createAccessDeniedException();
-        }
-    }
 }
