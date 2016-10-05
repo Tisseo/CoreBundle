@@ -3,25 +3,12 @@
 namespace Tisseo\CoreBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 abstract class CoreController extends Controller
 {
-    /**
-     * Checking access rights
-     *
-     * @param string $permission
-     */
-    protected function isGranted($permission)
-    {
-        if ($this->get('security.authorization_checker')->isGranted($permission) === false) {
-            throw new AccessDeniedException();
-        }
-    }
-
     /**
      * Checking a request is sent from AJAX call with specified HTTP method
      *
@@ -31,7 +18,7 @@ abstract class CoreController extends Controller
     protected function isAjax(Request $request, $method = Request::METHOD_GET)
     {
         if (!($request->isXmlHttpRequest() && $request->isMethod($method))) {
-            throw new AccessDeniedException();
+            throw $this->createAccessDeniedException();
         }
     }
 
@@ -65,41 +52,5 @@ abstract class CoreController extends Controller
         $response->setStatusCode($statusCode);
 
         return $response;
-    }
-
-    /**
-     * TODO: replace calls in other bundles
-     * Deprecated, we should check AJAX with other methods
-     * use isAjax($request, $method) instead
-     * deleted on version 2.0
-     */
-    protected function isPostAjax(Request $request)
-    {
-        if (!($request->isXmlHttpRequest() && $request->isMethod('POST')))
-            throw new AccessDeniedException();
-    }
-
-    /**
-     * TODO: look at DatasourceManager in EndivBundle
-     * Deprecated, no replacement for the moment
-     * deleted on version 2.0
-     */
-    protected function addBoaDatasource($datasource)
-    {
-        $user = $this->get('security.context')->getToken()->getUser();
-        $datasource->setCode($user->getUsername());
-        $datasource->setDatasource($this->get('tisseo_endiv.datasource_manager')->findDatasource('Service Données'));
-    }
-
-    /**
-     * TODO: look at DatasourceManager in EndivBundle
-     * Deprecated, no replacement for the moment
-     * deleted on version 2.0
-     */
-    protected function addPaonDatasource($datasource)
-    {
-        $user = $this->get('security.context')->getToken()->getUser();
-        $datasource->setCode($user->getUsername());
-        $datasource->setDatasource($this->get('tisseo_endiv.datasource_manager')->findDatasource('Information Voyageurs'));
     }
 }

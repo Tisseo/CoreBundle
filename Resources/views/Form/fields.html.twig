@@ -35,6 +35,16 @@
 
 {% block button_widget %}
     {% set attr = attr|merge({class: (attr.class|default('btn-default') ~ ' btn')|trim}) %}
+    {%- if attr['picto-left'] is not null -%}
+        {%  set picto_l = attr['picto-left'] ~ ' ' %}
+    {%- else %}
+        {%  set picto_l = '' -%}
+    {%- endif %}
+    {%- if attr['picto-right'] is not null -%}
+        {%  set picto_r = ' ' ~ attr['picto-right'] %}
+    {%- else %}
+        {%  set picto_r = '' %}
+    {%- endif -%}
     {%- if label is empty -%}
         {%- if label_format is not empty -%}
             {% set label = label_format|replace({
@@ -45,7 +55,8 @@
             {% set label = name|humanize %}
         {%- endif -%}
     {%- endif -%}
-    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ label|trans({}, translation_domain)|raw }}</button>
+
+    <button type="{{ type|default('button') }}" {{ block('button_attributes') }}>{{ picto_l|raw }}{{ label|trans({}, translation_domain)|raw }}{{ picto_r|raw }}</button>
 {% endblock button_widget %}
 
 {% block tisseo_email_widget %}
