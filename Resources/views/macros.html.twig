@@ -12,8 +12,8 @@
         </div>
         {% endif %}
     {% elseif type == 'line' %}
-        {% if object.LastLineVersion %}
-            {% set lineVersion = object.LastLineVersion %}
+        {% if object.lineVersions %}
+            {% set lineVersion = (object.lineVersions|first) %}
             <div class="line-number line-{{ size }}" style="color:{{ lineVersion.fgColor.html }}; background-color:{{ lineVersion.bgColor.html }}; font-family:sans-serif; font-weight: bold;">
         {% else %}
         <div class="line-number line-{{ size }}" style="font-family:sans-serif; font-weight: bold;">
