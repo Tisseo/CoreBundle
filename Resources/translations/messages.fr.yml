@@ -30,6 +30,7 @@ tisseo:
         annotations: Annotations
         no_items: Aucun élément à afficher
         no_items_short: Aucun
+        no_data: Aucune donnée trouvée
         from_date: du
         to_date: au
         yes: Oui
