@@ -3,10 +3,7 @@
 namespace Tisseo\CoreBundle\Security\Authentification;
 
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Router;
-use Symfony\Component\HttpFoundation\Session\Session;
 use CanalTP\SamCoreBundle\Component\Authentication\Handler\LoginSuccessHandler as SamLoginSuccessHandler;
 
 /**
@@ -16,11 +13,11 @@ use CanalTP\SamCoreBundle\Component\Authentication\Handler\LoginSuccessHandler a
 class LoginSuccessHandler extends SamLoginSuccessHandler {
 
     /**
-     * @param Request        $request
-     * @param TokenInterface $token
+     * @param  Request        $request
+     * @param  TokenInterface $token
      * @return RedirectResponse
      */
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token)
+    public function onAuthenticationSuccess(TokenInterface $token)
     {
         $user = $token->getUser();
         $userRoles = $user->getUserRoles();

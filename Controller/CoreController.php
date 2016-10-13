@@ -48,6 +48,15 @@ abstract class CoreController extends Controller
     protected function prepareJsonResponse($data = array(), $statusCode = Response::HTTP_OK)
     {
         $response = new JsonResponse();
+
+        // If data is empty and it wasn't checked before, return 404 with 'no data' message
+        if ($statusCode === Response::HTTP_OK && empty($data)) {
+            $response->setData($this->get('translator')->trans('tisseo.global.no_data'));
+            $response->setStatusCode(Response::HTTP_NOT_FOUND);
+
+            return $response;
+        }
+
         $response->setData($data);
         $response->setStatusCode($statusCode);
 

@@ -4,13 +4,7 @@
     "description" : "Core bundle providing common ressources to Tisseo bundles.",
     "keywords" : ["Tisseo core bundle"],
     "homepage": "https://github.com/Tisseo/CoreBundle",
-    "license": "AGPLv3",
-    "authors" : [
-        {
-            "name" : "Vincent Passama",
-            "email" : "vincent.passama@gmail.com"
-        }
-    ],
+    "license": "AGPL-3.0",
     "require" : {
         "php": ">=5.4.3",
         "components/jquery": "~1.11.1",
