@@ -17,7 +17,7 @@ define(['jquery'], function($) {
      */
 
     var deleteEvent = function(container) {
-        $(container).on('click', function () {
+        $(document).on('click', container, function () {
             $(this).parent().parent().remove();
         });
     };
@@ -25,7 +25,8 @@ define(['jquery'], function($) {
     var addEvent = function(container, collectionHolder, callbackFunction) {
         $(container).on('click', function() {
             var prototype = collectionHolder.attr('data-prototype');
-            var number = parseInt($('#collection .item:last-child').data('number')) + 1;
+            var lastNumber = parseInt($('#collection .item:last-child').data('number'));
+            var number = isNaN(lastNumber) ? 0 : lastNumber + 1;
             var newSubForm = prototype.replace(/__name__/g, number);
             $('#collection').append(newSubForm);
             $('#collection .item:last-child').data('number', number);
