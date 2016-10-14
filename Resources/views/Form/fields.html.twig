@@ -21,8 +21,8 @@
                 {% for error in errors %}
                     <li>{{
                         error.messagePluralization is null
-                            ? error.messageTemplate|trans(error.messageParameters)
-                            : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters)
+                            ? error.message|trans(error.messageParameters)
+                            : error.message|transchoice(error.messagePluralization, error.messageParameters)
                     }}</li>
                 {% endfor %}
             </ul>
