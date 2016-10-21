@@ -1,4 +1,6 @@
-define(['jquery', 'core/textfill', 'datatables'], function($) {
+define(['jquery', 'core/moment', 'core/textfill', 'datatables'], function($, moment) {
+
+    //plugin for ignoring special characters when searching
     $.fn.DataTable.ext.type.search.string = function ( data ) {
         return ! data ?
             '' :
@@ -29,9 +31,38 @@ define(['jquery', 'core/textfill', 'datatables'], function($) {
                     .replace( /ì/g, 'i' ) :
                 data;
     };
+
+    $.fn.dataTable.moment = function ( format, locale ) {
+        var types = $.fn.dataTable.ext.type;
+
+        // Add type detection
+        types.detect.unshift( function ( d ) {
+
+            // Null and empty values are acceptable
+            if ( d === '' || d === null ) {
+                return 'moment-'+format;
+            }
+
+            return moment( d, format, locale, true ).isValid() ?
+            'moment-'+format :
+                null;
+        } );
+
+        // Add sorting method - use an integer for the sorting
+        types.order[ 'moment-'+format+'-pre' ] = function ( d ) {
+            return d === '' || d === null ?
+                Infinity :
+                parseInt( moment( d, format, locale, true ).format( 'x' ), 10 );
+        };
+    };
+
     datatable = function(paginate, margin, iDisplayLength, processing, serverSide, caseInsensitive, ajax) {
         datatables = [];
         $(document).ready(function() {
+
+            $.fn.dataTable.moment( 'DD/MM/YYYY - HH:mm' );
+            $.fn.dataTable.moment( 'DD/MM/YYYY' );
+
             $(".datatable").each(function(index) {
                 var datatable = $(this).DataTable({
                     "aaSorting": [],
@@ -98,6 +129,7 @@ define(['jquery', 'core/textfill', 'datatables'], function($) {
                 });
                 datatables[index] = datatable;
             });
+
             if (margin) {
                 $('.datatable').parent().css('margin-bottom', margin+'px');
             }

@@ -18,6 +18,7 @@ requirejs.config({
         'smalot/bootstrap-datetimepicker/fr':   'bundles/tisseocore/js/bootstrap-datetimepicker.fr',
         'core/textfill':                        'bundles/tisseocore/js/textfill',
         'core/form':                            'bundles/tisseocore/js/form',
+        'core/moment':                          'bundles/tisseocore/js/moment',
         'core/datatables':                      'bundles/tisseocore/js/datatables',
         'core/collection':                      'bundles/tisseocore/js/collection',
         'core/improved-collection':             'bundles/tisseocore/js/improved-collection',
@@ -42,7 +43,7 @@ requirejs.config({
             deps: ['jquery/textfill']
         },
         'core/datatables': {
-            deps: ['jquery/datatables', 'jquery/textfill']
+            deps: ['jquery/datatables', 'jquery/textfill', 'core/moment']
         },
         'core/leaflet_utils': {
             deps: ['jquery', 'leaflet']
