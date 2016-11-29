@@ -2,17 +2,17 @@
 {% set datatable = true %}
 
 {% block content %}
-    <table class="table {% if not empty %}datatable {% endif %}{% block table_classes -%}table-hover{% endblock %}">
-        <thead>
-            <tr>
-               {% block table_head %}{% endblock %}
-            </tr>
-        </thead>
-        <tbody>
-            {% block table_body %}{% endblock %}
-        </tbody>
-    </table>
-    {% block list_pagination %}{% endblock %}
+<table class="table {% if not empty %}datatable {% endif %}{% block table_classes -%}table-hover{% endblock %}">
+    <thead>
+    <tr>
+        {% block table_head %}{% endblock %}
+    </tr>
+    </thead>
+    <tbody>
+    {% block table_body %}{% endblock %}
+    </tbody>
+</table>
+{% block list_pagination %}{% endblock %}
 {% endblock %}
 
 {% block javascripts %}
@@ -37,18 +37,25 @@
             {% set caseInsensitive = 'true' %}
         {% endif %}
         <script>
-            require(['core/datatables'], function() {
+            require(['core/datatables'], function () {
                 datatable({{ paginate }},
-                    {{ margin }},
-                    {{ iDisplayLength }},
-                    {{ processing }},
-                    {{ serverSide }},
-                    {{ caseInsensitive }}
-                    {% if ajax is defined %}
-                        ,'{{ ajax }}'
-                    {% endif %}
+                        {{ margin }},
+                        {{ iDisplayLength }},
+                        {{ processing }},
+                        {{ serverSide }},
+                        {{ caseInsensitive }}
+                        {% if ajax is defined %}
+                        , '{{ ajax }}'
+                        {% endif %}
                 );
             });
+            {% if tableCheckboxes %}
+                require(['core/dt-checkboxes'], function () {
+                    $('.datatable').add_checkboxes();
+                });
+            {% endif %}
+
+
         </script>
     {% endif %}
 {% endblock %}
