@@ -70,6 +70,6 @@
     </span>
 {% endmacro %}
 
-{% macro checkbox(boolean) %}
-    <input type="checkbox" onclick="return false;" {% if boolean %}checked{% endif %}>
+{% macro checkbox(line, isToggle = false) %}
+    <input type="checkbox" class="checkbox" data-id="{{ line.id }}" {% if isToggle %}id="checkbox-toggle"{% endif %}">
 {% endmacro %}
