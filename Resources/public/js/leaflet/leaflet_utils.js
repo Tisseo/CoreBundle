@@ -45,7 +45,7 @@ define(['jquery', 'leaflet'], function ($, L) {
         if ($('#leaflet-map-container').length < 1)
             return;
         init_map();
-        var stopIcon = new L.icon({iconUrl: stop_icon_pin_url, iconSize: [200, 200], popupAnchor: [0, -25]});
+        var stopIcon = new L.icon({iconUrl: stop_icon_pin_url, iconSize: [21, 41], popupAnchor: [0, -25]});
         var stopMarkers = addStopMarkers(stops, stopIcon, routeOnPopupClick);
         centerMapOnMarkers(stopMarkers);
 
