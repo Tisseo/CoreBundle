@@ -139,11 +139,12 @@ define(['jquery', 'leaflet'], function ($, L) {
 
         for (var i = 0; i < stops.length; i++) {
             var stop = stops[i];
+            var shade = 1- stop.shade
             if (stop.x && stop.y && stop.code) {
                 var marker = L.circleMarker([stop.y, stop.x], {
-                    radius: 12,
-                    fillColor: lighterDarkerColor(mapConf.COLORS.OUTER, stop.shade),
-                    color: lighterDarkerColor(mapConf.COLORS.OUTLINE, stop.shade),
+                    radius: 10,
+                    fillColor: lighterDarkerColor(mapConf.COLORS.OUTER, shade),
+                    color: lighterDarkerColor(mapConf.COLORS.OUTLINE, shade),
                     weight: 1,
                     opacity: 1,
                     fillOpacity: 1
@@ -156,7 +157,7 @@ define(['jquery', 'leaflet'], function ($, L) {
 
 
                 L.circleMarker([stop.y, stop.x], {
-                    radius: 4,
+                    radius: 3,
                     fillColor: "#fff",
                     color: "#666",
                     weight: 0,
@@ -241,7 +242,7 @@ define(['jquery', 'leaflet'], function ($, L) {
         for (var i = 0; i < routeStops.length; i++) {
             var routeStop = routeStops[i];
             var routeStyle = {
-                "color": lighterDarkerColor(mapConf.COLORS.OUTER, routeStops[i].shade),
+                "color": lighterDarkerColor(mapConf.COLORS.OUTER, 1- routeStops[i].shade),
                 "weight": mapConf.ROUTE_WEIGHT,
                 "opacity": mapConf.ROUTE_OPACITY
             };
