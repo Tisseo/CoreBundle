@@ -235,3 +235,11 @@
 .line-version-date {
     font-size:0.9em;
 }
+
+.text-marker {
+    white-space:nowrap;
+    font-weight: 300;
+    text-shadow: 0 0 0.1em black, 0 0 0.1em black,
+    0 0 0.1em black,0 0 0.1em black,0 0 0.1em;
+    color: #fff;
+}
