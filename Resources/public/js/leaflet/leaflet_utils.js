@@ -1,4 +1,4 @@
-define(['jquery', 'leaflet'], function ($, L) {
+define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
 
     /**************************************************************************
      *************************** CONFIGURATION *********************************
@@ -29,7 +29,6 @@ define(['jquery', 'leaflet'], function ($, L) {
 
     var map; //leaflet map object - get initialized in 'init_map' method
 
-
     /**************************************************************************
      *************************** INITIALISATION ********************************
      **************************************************************************/
@@ -48,7 +47,6 @@ define(['jquery', 'leaflet'], function ($, L) {
         var stopIcon = new L.icon({iconUrl: stop_icon_pin_url, iconSize: [25, 41], popupAnchor: [0, -25]});
         var stopMarkers = addStopMarkers(stops, stopIcon, routeOnPopupClick);
         centerMapOnMarkers(stopMarkers);
-
     };
 
     /**
@@ -58,15 +56,16 @@ define(['jquery', 'leaflet'], function ($, L) {
      *          * shouldDrawRoute -> BOOLEAN - if set to FALSE, routes won't be drawn
      **/
     init_map_with_route_stops = function (routeStops, shouldDrawRoutes) {
-        if ($('#leaflet-map-container').length < 1)
+        if ($('#leaflet-map-container').length < 1){
             return;
+        }
+
         init_map();
-        var stopIcon = new L.icon({iconUrl: stop_icon_circle_url, iconSize: [18, 18], popupAnchor: [0, -15]});
+
         if (shouldDrawRoutes) {
             drawRoutes(routeStops);
         }
-        var stopMarkers = addCircleMarkers(routeStops, stopIcon, true);
-        centerMapOnMarkers(stopMarkers);
+        drawStopsOnMap(routeStops, true, true);
     };
 
     /**
@@ -77,13 +76,13 @@ define(['jquery', 'leaflet'], function ($, L) {
     function init_map() {
         map = L.map('leaflet-map-container',
             {
-
                 maxBounds: mapConf.MAP_BOUNDS,
                 minZoom: mapConf.MIN_ZOOM,
                 maxZoom: mapConf.MAX_ZOOM,
                 //maxNativeZoom: mapConf.MAX_NATIVE_ZOOM,
                 dragging: true
             });
+
         var tileLayer = L.tileLayer(mapConf.WMTS_BG_URL,
             {
                 attribution: ""
@@ -132,59 +131,265 @@ define(['jquery', 'leaflet'], function ($, L) {
         return stopMarkers;
     }
 
-    function addCircleMarkers(stops, routeOnPopupClick) {
 
-        var stopMarkers = new Map();
-        var stopPointsLayer = new L.LayerGroup();
+    /**
+     * Create a array of Leaflet Layers for each routeStop Rank
+     * Draw them on the map
+     *
+     * @param stops
+     * @param routeOnPopupClick
+     * @param drawConvex
+     * @returns Array
+     */
+    function drawStopsOnMap (stops, routeOnPopupClick, drawConvex){
+        if(!stops.length){
+            return;
+        }
 
-        for (var i = 0; i < stops.length; i++) {
-            var stop = stops[i];
-            var shade = 1- stop.shade
-            if (stop.x && stop.y && stop.code) {
-                var marker = L.circleMarker([stop.y, stop.x], {
-                    radius: 10,
-                    fillColor: lighterDarkerColor(mapConf.COLORS.OUTER, shade),
-                    color: lighterDarkerColor(mapConf.COLORS.OUTLINE, shade),
-                    weight: 1,
-                    opacity: 1,
-                    fillOpacity: 1
-                })
-                    .addTo(stopPointsLayer)
-                    .bindPopup(
-                        createStopPopupContent(stop, routeOnPopupClick),
-                        {closeButton: false}
-                    );
+        var
+            virtualMap = new Map(),
+            singleStopPointsLayer = new L.FeatureGroup().addTo(map),
+            whitePointsLayer = new L.LayerGroup().addTo(map),
+            odtAreaLayers = [],
+            routePts = []
+            ;
 
+        stops.forEach(function (stop){
+            var circleMarker = createCircleMarker(stop,routeOnPopupClick);
 
-                L.circleMarker([stop.y, stop.x], {
-                    radius: 3,
-                    fillColor: "#fff",
-                    color: "#666",
-                    weight: 0,
-                    opacity: 1,
-                    fillOpacity: 1
-                })
-                    .addTo(stopPointsLayer)
-                    .bindPopup(
-                        createStopPopupContent(stop, routeOnPopupClick),
-                        {closeButton: false}
-                    );
-
-                marker.on('mouseover', function (e) {
-                    e.target.openPopup();
-                });
-                if (!routeOnPopupClick) {
-                    marker.on('mouseout', function (e) {
-                        e.target.closePopup();
-                    });
+            if(stop.odt_area){
+                if(!odtAreaLayers[stop.odt_area]){
+                    odtAreaLayers[stop.odt_area] = new L.FeatureGroup().addTo(map);
                 }
-                stopMarkers.set(stop.id, marker);
+                circleMarker.border.addTo(odtAreaLayers[stop.odt_area]);
+            }else{
+                circleMarker.border.addTo(singleStopPointsLayer);
+                routePts.push(circleMarker.border);
+            }
+            circleMarker.center.addTo(whitePointsLayer);
+            virtualMap.set(stop.id, circleMarker.border);
+        });
+
+        if(drawConvex && odtAreaLayers.length){
+            odtAreaLayers.forEach(function (layer){
+                if(layer.getLayers().length > 1 ){
+                    var convexGeoJson = drawConvexHull(layer);
+                }
+                routePts.push(convexGeoJson || layer);
+            });
+
+            // Sort the route points by Rank
+            var sortByRank = function (a, b){
+                if(a instanceof L.LayerGroup){
+                    a = a.getLayers()[0]
+                }
+                if(b instanceof L.LayerGroup){
+                    b = b.getLayers()[0]
+                }
+                return (a.options.rank - b.options.rank) || 0;
+            };
+            routePts.sort(sortByRank);
+            drawRoutesConvexPolygons(routePts);
+        }
+
+        centerMapOnMarkers(virtualMap);
+    }
+
+    /**
+     * Use group of marker in a layer to draw a convexHull
+     * @param layer
+     */
+    function drawConvexHull(layer){
+        if (!(layer && turf)){
+            return;
+        }
+
+        var layerGeoJSON = layer.toGeoJSON(),
+            convexGeometry = turf.convex(layerGeoJSON),
+            shade = layer.getLayers()[0].options.color,
+            rank = layer.getLayers()[0].options.rank,
+            turfBuffer,
+            convexGeoJson;
+
+        var convexStyle = {
+            color:  shade || "#000000",
+            opacity: 1,
+            weight: 2,
+            fillOpacity:.05,
+            fillColor: shade,
+            rank:rank
+        };
+
+        var params = {
+            distance : .1,
+            unit: 'miles'
+        };
+
+        if(convexGeometry){
+            turfBuffer = turf.buffer(convexGeometry, params.distance, params.unit);
+            convexGeoJson = L.geoJson(turfBuffer,convexStyle);
+            convexGeoJson.addTo(map);
+        }else{
+            if(layer.getLayers().length  == 2){
+                convexGeoJson = simulateConvex(layer, params, convexStyle);
             }
         }
 
-        stopPointsLayer.addTo(map);
+        return convexGeoJson;
+    }
 
-        return stopMarkers;
+    /**
+     * Create an envelop between 2 points
+     *
+     * @param layer
+     * @param params
+     * @param style
+     */
+    function simulateConvex (layer, params, style){
+
+        var LineLayer = new L.LayerGroup(),
+            pts = [];
+
+        layer.eachLayer(function (l){
+            pts.push(l.getLatLng());
+        });
+
+        var line = new L.Polyline(pts),
+            envelop = new turf.buffer(line.toGeoJSON(), params.distance, params.unit),
+            convexGeoJson = L.geoJson(envelop, style);
+
+        convexGeoJson.addTo(map);
+        LineLayer.addTo(map);
+
+        return convexGeoJson;
+
+    }
+
+    /**
+     * Draw a route Line between Convex Layer
+     * following their centers
+     *
+     * @param layer
+     */
+    function drawRoutesConvexPolygons (routePts){
+
+        if(!routePts.length){
+            return;
+        }
+
+        var
+            centerPts = [],
+            routeLayer = new L.FeatureGroup(),
+            centerMarkerLayer = new L.LayerGroup(),
+            route
+            ;
+
+        //Create number Labels
+        var addLabel = function(labelClass,labelText) {
+            return L.divIcon({
+                className: labelClass,
+                html: labelText
+            });
+        };
+
+        routePts.forEach(function (polygon){
+
+            var center = polygon.getBounds().getCenter();
+            if(center){
+                var routeStyle = {
+                    radius: 10,
+                    color: mapConf.COLORS.OUTLINE,
+                    weight:mapConf.ROUTE_WEIGHT/2,
+                    opacity: 1,
+                    fillOpacity: 1
+                };
+
+                var
+                    centerMarker,
+                    rankText,
+                    textMarker
+                    ;
+
+                if(polygon instanceof L.LayerGroup){
+                    rankText = polygon.getLayers()[0].options.rank;
+                }else{
+                    rankText = polygon.options.rank;
+                }
+
+                textMarker  = L.marker(center, {icon: addLabel("text-marker",rankText)});
+                textMarker.addTo(centerMarkerLayer);
+                centerPts.push(center);
+            }
+
+            route = L.polyline(centerPts,routeStyle);
+            route.addTo(routeLayer);
+            centerMarkerLayer.addTo(routeLayer);
+            routeLayer.addTo(map);
+        });
+
+    }
+
+    /**
+     * Create a single Circle Marker from a stopPoint
+     * @param stop
+     * @param routeOnPopupClick
+     */
+    function createCircleMarker(stop, routeOnPopupClick, customStyle){
+
+        if(!(stop && (stop.x || stop.y || stop.shade ))){
+            return;
+        }
+
+
+        var
+            shade = 1- stop.shade,
+            markerGroup = new L.LayerGroup()
+            ;
+
+        var style = customStyle ||
+            {
+                radius: 10,
+                fillColor: lighterDarkerColor(mapConf.COLORS.OUTER, shade),
+                color: lighterDarkerColor(mapConf.COLORS.OUTLINE, shade),
+                weight: 1,
+                opacity: 1,
+                fillOpacity: 1,
+                rank: stop.rank
+            };
+
+        var markerBorder = L.circleMarker([stop.y, stop.x], style);
+        markerBorder.bindPopup(createStopPopupContent(stop, routeOnPopupClick), {closeButton: false});
+
+        var markerCenterPoint = L.circleMarker([stop.y, stop.x], {
+            radius: 3,
+            fillColor: "#fff",
+            color: "#666",
+            weight: 0,
+            opacity: 1,
+            fillOpacity: 1
+        });
+        markerCenterPoint.bindPopup(
+            createStopPopupContent(stop, routeOnPopupClick),
+            {closeButton: false}
+        );
+
+        markerBorder.on('mouseover', function (e) {
+            e.target.openPopup();
+        });
+
+        if (!routeOnPopupClick) {
+            markerBorder.on('mouseout', function (e) {
+                e.target.closePopup();
+            });
+        }
+
+        markerBorder.addTo(markerGroup);
+        markerCenterPoint.addTo(markerGroup);
+
+        return {
+            'border' : markerBorder,
+            'center': markerCenterPoint
+        }
     }
 
     /**

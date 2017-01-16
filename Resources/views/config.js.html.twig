@@ -28,7 +28,8 @@ requirejs.config({
         'core/select-to-hidden':                'bundles/tisseocore/js/select-to-hidden',
         'core/confirm':                         'bundles/tisseocore/js/confirm',
         'core/compare-date':                    'bundles/tisseocore/js/compare-date',
-        'core/dt-checkboxes':                   'bundles/tisseocore/js/dt-checkboxes'
+        'core/dt-checkboxes':                   'bundles/tisseocore/js/dt-checkboxes',
+        'turf':                                 'bundles/tisseocore/js/leaflet/turf.min'
     },
     shim: {
         'bootbox': {
@@ -47,7 +48,7 @@ requirejs.config({
             deps: ['jquery/datatables', 'jquery/textfill', 'core/moment']
         },
         'core/leaflet_utils': {
-            deps: ['jquery', 'leaflet']
+            deps: ['jquery', 'turf', 'leaflet']
         },
         'core/map': {
             deps: ['jquery', 'leaflet']
