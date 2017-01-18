@@ -15,6 +15,7 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
         ROUTE_COLOR: "#3d91cf",
         ROUTE_WEIGHT: 7,
         ROUTE_OPACITY: 1,
+        DEFAULT_LBL_CLASS: "text-marker",
         COLORS:  {
             OUTER: '#3d91cf',
             OUTLINE: '#357bad',
@@ -131,6 +132,18 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
         return stopMarkers;
     }
 
+    /**
+     *
+     * @param leafletObject
+     * @return {*}
+     */
+    function getPt (leafletObject){
+        while (leafletObject instanceof L.LayerGroup){
+            leafletObject = leafletObject.getLayers()[0];
+            return leafletObject;
+        }
+        return leafletObject;
+    }
 
     /**
      * Create a array of Leaflet Layers for each routeStop Rank
@@ -149,7 +162,7 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
         var
             virtualMap = new Map(),
             singleStopPointsLayer = new L.FeatureGroup().addTo(map),
-            whitePointsLayer = new L.LayerGroup().addTo(map),
+            markerLayer = new L.LayerGroup().addTo(map),
             odtAreaLayers = [],
             routePts = []
             ;
@@ -161,13 +174,12 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
                 if(!odtAreaLayers[stop.odt_area]){
                     odtAreaLayers[stop.odt_area] = new L.FeatureGroup().addTo(map);
                 }
-                circleMarker.border.addTo(odtAreaLayers[stop.odt_area]);
+                circleMarker.addTo(odtAreaLayers[stop.odt_area]);
             }else{
-                circleMarker.border.addTo(singleStopPointsLayer);
-                routePts.push(circleMarker.border);
+                circleMarker.addTo(singleStopPointsLayer);
+                routePts.push(circleMarker);
             }
-            circleMarker.center.addTo(whitePointsLayer);
-            virtualMap.set(stop.id, circleMarker.border);
+            virtualMap.set(stop.id, circleMarker);
         });
 
         if(drawConvex && odtAreaLayers.length){
@@ -178,18 +190,37 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
                 routePts.push(convexGeoJson || layer);
             });
 
-            // Sort the route points by Rank
-            var sortByRank = function (a, b){
-                if(a instanceof L.LayerGroup){
-                    a = a.getLayers()[0]
-                }
-                if(b instanceof L.LayerGroup){
-                    b = b.getLayers()[0]
-                }
-                return (a.options.rank - b.options.rank) || 0;
-            };
-            routePts.sort(sortByRank);
-            drawRoutesConvexPolygons(routePts);
+            // Add zone with multiple Rank then sort by rank
+            var itinerary = [];
+
+            routePts
+                .map(getPt)
+                .forEach(function (pt, i, route){
+                    var  _label = pt.options.rank;
+                    if(pt.options.rank.split) {
+                        var ranks = pt.options.rank.split('-');
+                        if(ranks.length){
+                            ranks.forEach(function (r){
+                                var _pt = $.extend(true, {}, pt);
+                                _pt.options['rankLabel'] = _label;
+                                _pt.options['rank'] = parseInt(r);
+                                itinerary.push(_pt);
+                            });
+                        }
+                    }else{
+                        itinerary.push(pt);
+                    }
+                });
+
+            itinerary.sort(function (a,b){
+                var
+                    rankA = a.options.rank,
+                    rankB = b.options.rank
+                    ;
+                return ( rankA - rankB );
+            });
+
+            drawRoutesConvexPolygons(itinerary);
         }
 
         centerMapOnMarkers(virtualMap);
@@ -228,12 +259,14 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
         if(convexGeometry){
             turfBuffer = turf.buffer(convexGeometry, params.distance, params.unit);
             convexGeoJson = L.geoJson(turfBuffer,convexStyle);
-            convexGeoJson.addTo(map);
+            convexGeoJson.addTo(layer);
         }else{
             if(layer.getLayers().length  == 2){
                 convexGeoJson = simulateConvex(layer, params, convexStyle);
             }
         }
+
+        layer.bringToBack();
 
         return convexGeoJson;
     }
@@ -258,8 +291,8 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
             envelop = new turf.buffer(line.toGeoJSON(), params.distance, params.unit),
             convexGeoJson = L.geoJson(envelop, style);
 
-        convexGeoJson.addTo(map);
-        LineLayer.addTo(map);
+        convexGeoJson.addTo(layer);
+        LineLayer.addTo(layer);
 
         return convexGeoJson;
 
@@ -287,13 +320,12 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
         //Create number Labels
         var addLabel = function(labelClass,labelText) {
             return L.divIcon({
-                className: labelClass,
+                className: labelClass || mapConf.DEFAULT_LBL_CLASS,
                 html: labelText
             });
         };
 
         routePts.forEach(function (polygon){
-
             var center = polygon.getBounds().getCenter();
             if(center){
                 var routeStyle = {
@@ -310,17 +342,11 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
                     textMarker
                     ;
 
-                if(polygon instanceof L.LayerGroup){
-                    rankText = polygon.getLayers()[0].options.rank;
-                }else{
-                    rankText = polygon.options.rank;
-                }
-
-                textMarker  = L.marker(center, {icon: addLabel("text-marker",rankText)});
+                rankText = polygon.options.rankLabel || polygon.options.rank;
+                textMarker  = L.marker(center, {icon: addLabel(null,rankText)});
                 textMarker.addTo(centerMarkerLayer);
                 centerPts.push(center);
             }
-
             route = L.polyline(centerPts,routeStyle);
             route.addTo(routeLayer);
             centerMarkerLayer.addTo(routeLayer);
@@ -341,34 +367,24 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
         }
 
 
-        var
-            shade = 1- stop.shade,
-            markerGroup = new L.LayerGroup()
-            ;
+        var shade = 1- stop.shade;
 
         var style = customStyle ||
             {
-                radius: 10,
-                fillColor: lighterDarkerColor(mapConf.COLORS.OUTER, shade),
-                color: lighterDarkerColor(mapConf.COLORS.OUTLINE, shade),
-                weight: 1,
+                radius: 8,
+                fillColor: '#fff',
+                color: lighterDarkerColor(mapConf.COLORS.OUTER, shade),
+                weight: 8,
                 opacity: 1,
                 fillOpacity: 1,
+                shadowSize:[1,1],
                 rank: stop.rank
             };
 
         var markerBorder = L.circleMarker([stop.y, stop.x], style);
         markerBorder.bindPopup(createStopPopupContent(stop, routeOnPopupClick), {closeButton: false});
 
-        var markerCenterPoint = L.circleMarker([stop.y, stop.x], {
-            radius: 3,
-            fillColor: "#fff",
-            color: "#666",
-            weight: 0,
-            opacity: 1,
-            fillOpacity: 1
-        });
-        markerCenterPoint.bindPopup(
+        markerBorder.bindPopup(
             createStopPopupContent(stop, routeOnPopupClick),
             {closeButton: false}
         );
@@ -383,13 +399,7 @@ define(['jquery', 'leaflet', 'turf'], function ($, L, turf) {
             });
         }
 
-        markerBorder.addTo(markerGroup);
-        markerCenterPoint.addTo(markerGroup);
-
-        return {
-            'border' : markerBorder,
-            'center': markerCenterPoint
-        }
+        return markerBorder;
     }
 
     /**
