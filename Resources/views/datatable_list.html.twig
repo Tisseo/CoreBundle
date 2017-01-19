@@ -4,6 +4,7 @@
 {% block content %}
 <table class="table {% if not empty %}datatable {% endif %}{% block table_classes -%}table-hover{% endblock %}">
     <thead>
+    {% block table_head_tr %}{% endblock %}
     <tr>
         {% block table_head %}{% endblock %}
     </tr>
