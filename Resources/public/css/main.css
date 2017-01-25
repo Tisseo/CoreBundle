@@ -235,11 +235,58 @@
 .line-version-date {
     font-size:0.9em;
 }
-
 .text-marker {
     white-space:nowrap;
     font-weight: 300;
     text-shadow: 0 0 0.1em black, 0 0 0.1em black,
     0 0 0.1em black,0 0 0.1em black,0 0 0.1em;
     color: #fff;
+}
+.show-toggle-container {
+    background:transparent;
+}
+.show-toggle-container > tr > th {
+    text-align:center;
+    font-weight:normal;
+}
+.show-toggle-trigger,
+.show-toggle-trigger:link,
+.show-toggle-trigger:visited,
+.show-toggle-trigger:active {
+    color:#777;
+    text-decoration:none;
+}
+.show-toggle-trigger:hover {
+    color:#000;
+    text-decoration:none;
+    -webkit-transition:all 250ms ease;
+    -moz-transition:all 250ms ease;
+    -ms-transition:all 250ms ease;
+    -o-transition:all 250ms ease;
+    transition:all 250ms ease;
+}
+.show-toggle-trigger > i {
+    text-decoration:none;
+    -webkit-transition:all ease 250ms;
+    -moz-transition:all ease 250ms;
+    -ms-transition:all ease 250ms;
+    -o-transition:all ease 250ms;
+    transition:all ease 250ms;
+    -webkit-transform:rotate(0deg);
+    -moz-transform:rotate(0deg);
+    -ms-transform:rotate(0deg);
+    -o-transform:rotate(0deg);
+    transform:rotate(0deg);
+}
+.show-toggle-trigger.folded > i {
+    -webkit-transition:all ease 250ms;
+    -moz-transition:all ease 250ms;
+    -ms-transition:all ease 250ms;
+    -o-transition:all ease 250ms;
+    transition:all ease 250ms;
+    -webkit-transform:rotate(180deg);
+    -moz-transform:rotate(180deg);
+    -ms-transform:rotate(180deg);
+    -o-transform:rotate(180deg);
+    transform:rotate(180deg);
 }

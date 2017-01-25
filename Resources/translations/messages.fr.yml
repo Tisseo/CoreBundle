@@ -81,3 +81,6 @@ tisseo:
             closed: Clôture effectuée
             detached: Suppression effectuée
             sent: Demande envoyée
+    toggle_rows:
+        more: Afficher les anciens éléments
+        less: Cacher les anciens éléments
