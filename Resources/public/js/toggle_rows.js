@@ -56,6 +56,7 @@ define(['jquery'], function($) {
             } else if ($(target).is('ul')) {
                 rows = $(target).find('li');
             } else {
+                showContainer.hide();
                 return;
             }
 
