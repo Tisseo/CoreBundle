@@ -14,11 +14,17 @@ define(['jquery', 'bootbox'], function($, bootbox) {
         $(document).on("click", ".confirm", function(event) {
             event.preventDefault();
             var self = this;
+            if ($(self).attr('data-loading-text') !== undefined) {
+                $(self).button('loading');
+            }
+
             bootbox.confirm($(this).data('message'), function(result) {
                 if (typeof callback === "function") {
                     callback(result);
                 } else if (result) {
                     window.location = self.href;
+                } else if ($(self).attr('data-loading-text') !== undefined) {
+                    $(self).button('reset');
                 }
             });
         });
