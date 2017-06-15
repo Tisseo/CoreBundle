@@ -8,7 +8,7 @@ tisseo:
         show: Voir
         save: Enregistrer
         close: Fermer
-        closure: Clôturer
+        closure: Clore
         delete: Supprimer
         delete_all: Tout supprimer
         delete_select: Supprimer la sélection
