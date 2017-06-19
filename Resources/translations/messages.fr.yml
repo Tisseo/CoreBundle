@@ -1,3 +1,6 @@
+global:
+    close: Fermer
+
 tisseo:
     global:
         actions: Actions
