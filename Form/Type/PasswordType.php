@@ -15,6 +15,7 @@ class PasswordType extends AbstractType
             )
         );
     }
+
     public function getParent()
     {
         return 'password';

@@ -15,6 +15,7 @@ class EmailType extends AbstractType
             )
         );
     }
+
     public function getParent()
     {
         return 'email';
