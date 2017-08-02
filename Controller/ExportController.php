@@ -17,38 +17,36 @@ class ExportController extends Controller
     {
         $manager = $this->get($service);
 
-        if (!is_callable(array($manager, 'getCsvExport')))
+        if (!is_callable(array($manager, 'getCsvExport'))) {
             throw new \Exception('The service used for CSV export have to provide an export function');
-
+        }
         $response = new StreamedResponse();
         list($content, $filename) = empty($option) ? $manager->getCsvExport() : $manager->getCsvExport($option);
 
-        $response->setCallback(function() use ($content)
-        {
+        $response->setCallback(function () use ($content) {
             $handle = fopen('php://output', 'w+');
             fwrite($handle, "\xEF\xBB\xBF"); // adds BOM utf8 fox Excel
 
-            foreach($content as $index => $row)
-            {
-                if ($index == 0)
+            foreach ($content as $index => $row) {
+                if ($index == 0) {
                     fputcsv($handle, array_keys($row), ';');
+                }
 
                 $csvRow = array();
-                foreach ($row as $attribute)
-                {
-                    if ($attribute instanceof \Datetime)
+                foreach ($row as $attribute) {
+                    if ($attribute instanceof \Datetime) {
                         $csvRow[] = $attribute->format('Y-m-d');
-                    else if (is_object($attribute))
-                    {
-                        if (is_callable(array($attribute, '__toString')))
+                    } elseif (is_object($attribute)) {
+                        if (is_callable(array($attribute, '__toString'))) {
                             $csvRow[] = $attribute;
-                        else if (is_callable(array($attribute, 'getId')))
+                        } elseif (is_callable(array($attribute, 'getId'))) {
                             $csvRow[] = $attribute->getId();
-                        else
+                        } else {
                             $csvRow[] = '#error';
-                    }
-                    else
+                        }
+                    } else {
                         $csvRow[] = $attribute;
+                    }
                 }
                 fputcsv($handle, $csvRow, ';');
             }
@@ -59,7 +57,7 @@ class ExportController extends Controller
         $response->setStatusCode(200);
         $response->headers->set('Content-Type', 'application/force-download');
         //$response->headers->set('')
-        $response->headers->set('Content-Disposition','attachment; filename="'.$filename.'.csv"');
+        $response->headers->set('Content-Disposition', 'attachment; filename="'.$filename.'.csv"');
 
         return $response;
     }

@@ -12,12 +12,13 @@ class CheckValidationGroup
      * return [Default,Edition]
      *
      * @param FormInterface $form
+     *
      * @return array
      */
     public static function resolve(FormInterface $form)
     {
         if ($form->getData()->getId() !== null) {
-            return array ('Default', 'Edition');
+            return array('Default', 'Edition');
         }
 
         return array('Default', 'Registration');

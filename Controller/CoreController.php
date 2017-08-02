@@ -13,7 +13,7 @@ abstract class CoreController extends Controller
      * Checking a request is sent from AJAX call with specified HTTP method
      *
      * @param Request $request
-     * @param string $method
+     * @param string  $method
      */
     protected function isAjax(Request $request, $method = Request::METHOD_GET)
     {
@@ -43,7 +43,7 @@ abstract class CoreController extends Controller
      * Preparing a JsonResponse
      *
      * @param array $data
-     * @param integer $statusCode
+     * @param int   $statusCode
      */
     protected function prepareJsonResponse($data = array(), $statusCode = Response::HTTP_OK)
     {
