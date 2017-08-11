@@ -37,26 +37,30 @@
         {% if not caseInsensitive %}
             {% set caseInsensitive = 'true' %}
         {% endif %}
-        <script>
+        {% if not activateSearch %}
+            {% set activateSearch = 'true' %}
+        {% endif %}
+
+        <script type="text/javascript">
             require(['core/datatables'], function () {
-                datatable({{ paginate }},
-                        {{ margin }},
-                        {{ iDisplayLength }},
-                        {{ processing }},
-                        {{ serverSide }},
-                        {{ caseInsensitive }}
-                        {% if ajax is defined %}
-                        , '{{ ajax }}'
-                        {% endif %}
-                );
+                datatable({
+                    'bPaginate': {{ paginate }},
+                    'margin': {{ margin }},
+                    'iDisplayLength': {{ iDisplayLength }},
+                    'processing': {{ processing }},
+                    'serverSide': {{ serverSide }},
+                    'bFilter': {{ activateSearch }},
+                    {% if ajax is defined %}'ajax': '{{ ajax }}',{% endif %}
+                    'search': {
+                        'caseInsensitive': {{ caseInsensitive }}
+                    }
+                })
             });
             {% if tableCheckboxes %}
                 require(['core/dt-checkboxes'], function () {
                     $('.datatable').add_checkboxes();
                 });
             {% endif %}
-
-
         </script>
     {% endif %}
 {% endblock %}
