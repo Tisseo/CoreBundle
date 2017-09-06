@@ -16,7 +16,7 @@ class GreaterThanFieldValidator extends ConstraintValidator
      * @param mixed      $value      The value that should be validated
      * @param Constraint $constraint The constrain for the validation
      *
-     * @return Boolean Whether or not the value is valid
+     * @return bool Whether or not the value is valid
      */
     public function validate($value, Constraint $constraint)
     {

@@ -27,7 +27,7 @@ class EntityToIntTransformer implements DataTransformerInterface
     /**
      * @param mixed $entity
      *
-     * @return integer
+     * @return int
      */
     public function transform($entity)
     {
@@ -52,7 +52,7 @@ class EntityToIntTransformer implements DataTransformerInterface
             return null;
         }
 
-        $entity = $this->om->getRepository($this->entityRepository)->findOneBy(array("id" => $id));
+        $entity = $this->om->getRepository($this->entityRepository)->findOneBy(array('id' => $id));
 
         if (null === $entity) {
             throw new TransformationFailedException(sprintf(
