@@ -123,10 +123,9 @@ define(['jquery', 'core/moment', 'core/textfill', 'datatables'], function($, mom
         };
 
         var finalParams = $.extend({}, defaultParams, params);
-        var datatables = [];
+        datatables = [];
 
         $(document).ready(function() {
-
             $.fn.dataTable.moment( 'DD/MM/YYYY - HH:mm' );
             $.fn.dataTable.moment( 'DD/MM/YYYY' );
 
