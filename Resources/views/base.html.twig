@@ -6,6 +6,10 @@
                    filter='cssrewrite' output='css/tisseo_core.css' %}
         <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
     {% endstylesheets %}
+    {% stylesheets 'bundles/bootstrapcolorpicker/css/bootstrap-colorpicker.min.css'
+            filter='cssrewrite' %}
+         <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block head_config %}
