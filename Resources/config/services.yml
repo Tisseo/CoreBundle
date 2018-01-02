@@ -7,6 +7,10 @@ services:
         class: Tisseo\CoreBundle\Form\Type\DatepickerType
         tags:
             - { name: form.type, alias: tisseo_datepicker }
+    form.type.tisseo_datetimepicker:
+        class: Tisseo\CoreBundle\Form\Type\DatetimepickerType
+        tags:
+            - { name: form.type, alias: tisseo_datetimepicker }
     form.type.tisseo_tel:
         class: Tisseo\CoreBundle\Form\Type\TelType
         tags:
