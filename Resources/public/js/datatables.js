@@ -38,6 +38,9 @@ define(['jquery', 'core/moment', 'core/textfill', 'datatables'], function($, mom
         // Add type detection
         types.detect.unshift( function ( d ) {
 
+            // Strip html tags
+            d = $("<div>").html(d).text();
+
             // Null and empty values are acceptable
             if ( d === '' || d === null ) {
                 return 'moment-'+format;
@@ -50,6 +53,10 @@ define(['jquery', 'core/moment', 'core/textfill', 'datatables'], function($, mom
 
         // Add sorting method - use an integer for the sorting
         types.order[ 'moment-'+format+'-pre' ] = function ( d ) {
+
+            // Strip html tags
+            d = $("<div>").html(d).text();
+
             return d === '' || d === null ?
                 Infinity :
                 parseInt( moment( d, format, locale, true ).format( 'x' ), 10 );
