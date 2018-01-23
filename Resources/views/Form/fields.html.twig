@@ -8,6 +8,16 @@
     {% endspaceless %}
 {% endblock datepicker_widget %}
 
+{% block datetimepicker_widget %}
+    {% spaceless %}
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+            {%  set attr = attr|merge({'class': ((attr.class|default('') ~ ' form-control')|trim)}) %}
+            <input type="text"  data-provide="datetimepicker" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+        </div>
+    {% endspaceless %}
+{% endblock datetimepicker_widget %}
+
 {% block form_errors %}
     {% spaceless %}
         {% if errors is not empty %}
