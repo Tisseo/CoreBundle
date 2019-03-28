@@ -26,12 +26,7 @@ class LoginSuccessHandler extends SamLoginSuccessHandler
         foreach ($userRoles as $role) {
             $defaultRoute = $role->getApplication()->getDefaultRoute();
             if (!is_null($defaultRoute)) {
-                // Hack for redirect to archive page
-                if ($role->getApplication()->getName() === 'Ogive' && $role->getCanonicalName() === 'ROLE_LECTURE_SEULE_OGIVE') {
-                    $defaultRoute = $this->router->match('/ogive/events/history');
-                } else {
-                    $defaultRoute = $this->router->match($defaultRoute);
-                }
+                $defaultRoute = $this->router->match($defaultRoute);
 
                 return new RedirectResponse($this->router->generate($defaultRoute['_route']));
             }
