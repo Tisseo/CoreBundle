@@ -32,7 +32,8 @@ requirejs.config({
         'core/confirm':                         'bundles/tisseocore/js/confirm',
         'core/compare-date':                    'bundles/tisseocore/js/compare-date',
         'core/dt-checkboxes':                   'bundles/tisseocore/js/dt-checkboxes',
-        'core/toggle-rows':                     'bundles/tisseocore/js/toggle_rows'
+        'core/toggle-rows':                     'bundles/tisseocore/js/toggle_rows',
+        'core/select2' :                        'bundles/tisseocore/js/select2/select2.min',
     },
     shim: {
         'bootbox': {
@@ -85,6 +86,9 @@ requirejs.config({
         },
         'core/delete-confirm': {
             deps: ['jquery', 'bootbox']
+        },
+        'core/select2': {
+            deps: ['jquery']
         }
     },
     deps: ['utils', 'jquery', 'core/form'],

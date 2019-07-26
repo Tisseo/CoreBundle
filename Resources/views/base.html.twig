@@ -10,6 +10,14 @@
             filter='cssrewrite' %}
          <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
     {% endstylesheets %}
+    {% stylesheets 'bundles/tisseocore/css/select2.min.css'
+        filter='cssrewrite' output='css/select2.min.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+    {% endstylesheets %}
+    {% stylesheets 'bundles/tisseocore/css/select2-bootstrap.css'
+        filter='cssrewrite' output='css/select2-bootstrap.min.css' %}
+        <link rel="stylesheet" href="{{ asset_url }}?{{ assets_version }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block head_config %}
