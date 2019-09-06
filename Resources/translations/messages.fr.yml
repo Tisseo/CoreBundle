@@ -41,6 +41,7 @@ tisseo:
         unlock: Déverrouiller
         locked: Verrouillé
         unlocked: Déverrouillé
+        choose: Votre choix
         short_days:
             1: L
             2: M
