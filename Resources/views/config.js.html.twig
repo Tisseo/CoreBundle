@@ -19,6 +19,7 @@ requirejs.config({
         'smalot/bootstrap-datetimepicker':      'bundles/tisseocore/js/bootstrap-datetimepicker.min',
         'smalot/bootstrap-datetimepicker/fr':   'bundles/tisseocore/js/bootstrap-datetimepicker.fr',
         'turf':                                 'bundles/tisseocore/js/leaflet/turf.min',
+        'select2' :                             'bundles/tisseocore/js/select2/select2.min',
         'core/textfill':                        'bundles/tisseocore/js/textfill',
         'core/form':                            'bundles/tisseocore/js/form',
         'core/moment':                          'bundles/tisseocore/js/moment',
@@ -33,7 +34,7 @@ requirejs.config({
         'core/compare-date':                    'bundles/tisseocore/js/compare-date',
         'core/dt-checkboxes':                   'bundles/tisseocore/js/dt-checkboxes',
         'core/toggle-rows':                     'bundles/tisseocore/js/toggle_rows',
-        'core/select2' :                        'bundles/tisseocore/js/select2/select2.min',
+        'core/select2' :                        'bundles/tisseocore/js/core-select2',
     },
     shim: {
         'bootbox': {
@@ -88,7 +89,7 @@ requirejs.config({
             deps: ['jquery', 'bootbox']
         },
         'core/select2': {
-            deps: ['jquery']
+            deps: ['select2']
         }
     },
     deps: ['utils', 'jquery', 'core/form'],
